@@ -1,113 +1,102 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>About Stamford — AGSB</title>
-  <meta name="description" content="The history, identity and achievements of Stamford House at Altrincham Grammar School for Boys." />
+  <title>About — Stamford House, AGSB</title>
+  <meta name="description" content="The history, identity, ethos and legacy of Stamford House at Altrincham Grammar School for Boys." />
   <link rel="icon" href="assets/crest.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div class="aurora"></div>
+  <canvas id="starfield"></canvas>
+  <div class="scroll-progress"></div>
   <div class="flag-strip"><i class="b"></i><i class="m"></i><i class="s"></i><i class="t"></i></div>
 
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html">
-        <img src="assets/crest.svg" alt="Stamford House crest" />
-        <span class="brand-text"><small>AGSB · HOUSE</small><span>STAMFORD</span></span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+      <a class="brand" href="index.html"><img src="assets/crest.svg" alt="Stamford crest" /><span class="brand-text"><small>AGSB · HOUSE</small><span>STAMFORD</span></span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html" class="active">About</a></li>
         <li><a href="leadership.html">Leadership</a></li>
         <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="get-involved.html">Get Involved</a></li>
       </ul>
+      <div class="nav-tools"><button class="theme-toggle" aria-label="Toggle light/dark">☀</button><button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button></div>
     </div>
   </header>
 
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Home</a> → About</div>
-      <h1>About Stamford</h1>
+      <h1>About <span class="gradient-text">Stamford</span></h1>
       <p>A legacy, a tradition, and a community that spans every year group at AGSB.</p>
     </div>
   </section>
 
   <section class="section">
-    <div class="container">
-      <div class="split">
-        <div>
-          <span class="eyebrow">Who we are</span>
-          <h2 class="section-title">The dominant house — and the most welcoming.</h2>
-          <p class="lead">Stamford is one of four houses at Altrincham Grammar School for Boys, reintroduced across the school in 2019. Every pupil and member of staff belongs to a house; siblings share one. We compete across the year for points, pride and the trophies.</p>
-          <p style="margin-top:14px;color:var(--muted)">What sets Stamford apart isn't just the silverware — it's how we win. We capitalise on a diverse range of talents and we get everyone involved. Two thirds of the school's major trophy cabinet is blue for a reason.</p>
-        </div>
-        <div>
-          <img src="assets/crest.svg" alt="Stamford House crest" style="max-width:300px;margin-inline:auto;filter:drop-shadow(0 16px 30px rgba(10,31,107,.18))" />
-        </div>
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">Who we are</span>
+        <h2 class="section-title">The dominant house — and the most <span class="gradient-text">welcoming.</span></h2>
+        <p class="lead">Stamford is one of four houses at AGSB, reintroduced across the school in 2019. Every pupil and member of staff belongs to a house; siblings share one. We compete all year for points, pride and the trophies.</p>
+        <p class="muted mt">What sets Stamford apart isn't just the silverware — it's how we win. We capitalise on a diverse range of talents and get everyone involved. Two thirds of the school's major trophy cabinet is blue for a reason.</p>
       </div>
-    </div>
-  </section>
-
-  <section class="section section--light">
-    <div class="container">
-      <span class="eyebrow">Our ethos</span>
-      <h2 class="section-title">Every student feels valued. Everyone has a role.</h2>
-      <div class="grid grid-3 mt">
-        <div class="card"><span class="tag">Belonging</span><h3>A sense of community</h3><p>The house breaks down year and form divisions, building vertical friendships from Year 7 to Year 13.</p></div>
-        <div class="card"><span class="tag">Recognition</span><h3>Celebrating success</h3><p>We recognise achievement and excellence — and reward endeavour, effort and participation just as loudly.</p></div>
-        <div class="card"><span class="tag">Character</span><h3>Pride &amp; resilience</h3><p>Stamford develops pride, diligence, respect, resilience and responsibility through friendly, fierce rivalry.</p></div>
-        <div class="card"><span class="tag">Leadership</span><h3>Student leaders</h3><p>House Captains, Deputies and elected House Leaders in every year group organise events and lead assemblies.</p></div>
-        <div class="card"><span class="tag">Participation</span><h3>Mass turnout</h3><p>Our edge is numbers. The more Stamfordians who step up, the more we win — Shout, Sports Day and beyond.</p></div>
-        <div class="card"><span class="tag">Support</span><h3>Role models</h3><p>Supportive peers and older students who set the standard and bring the next generation through.</p></div>
+      <div class="hero-crest reveal d1" style="justify-self:center">
+        <div class="hero-crest__inner"><img src="assets/crest.svg" alt="Stamford crest" style="width:min(300px,70vw)" /></div>
       </div>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="split">
-        <div>
-          <span class="eyebrow">The legacy</span>
-          <h2 class="section-title">Built by people who stepped up.</h2>
-          <p class="lead">House Shout dominance doesn't happen by accident. Year after year, Stamfordians have shown up, rehearsed, competed and carried the standard forward.</p>
-          <ul class="timeline mt">
-            <li><span>2019</span><h4>The house system returns</h4><p>Houses reintroduced across AGSB to build community and leadership.</p></li>
-            <li><span>Recent years</span><h4>House Shout dynasty</h4><p>Five-plus consecutive years of House Shout victories — the crown jewel of the calendar.</p></li>
-            <li><span>2024/25</span><h4>Carrying the torch</h4><p>Captain Bhuvan Vaddhireddy and Vice Leo Beesley lead on legacy, unity and mass participation.</p></li>
-            <li><span>2026/27</span><h4>The next chapter</h4><p>Daniel Stevenson and Ayaan Siddiqui take the helm. The standard stays the same: Stamford wins.</p></li>
-          </ul>
-        </div>
-        <div>
-          <blockquote class="quote" style="margin-bottom:28px">
-            “Two thirds of the schoolhouse major trophy cabinet is adorned with blue for good reason.”
-            <cite>— Leo Beesley, 2024/25 Vice Captain</cite>
-          </blockquote>
-          <blockquote class="quote">
-            “Stamford is more than just a name — it is a legacy, a tradition woven into the very fabric of our identity.”
-            <cite>— Bhuvan Vaddhireddy, 2024/25 Captain</cite>
-          </blockquote>
-        </div>
+      <div class="reveal"><span class="eyebrow">Our ethos</span><h2 class="section-title">Every student feels valued. <span class="gradient-text">Everyone has a role.</span></h2></div>
+      <div class="grid grid-3 mt">
+        <div class="card glass reveal" data-tilt><span class="tag">Belonging</span><h3>A sense of community</h3><p>The house breaks down year and form divisions, building vertical friendships from Year 7 to 13.</p></div>
+        <div class="card glass reveal d1" data-tilt><span class="tag">Recognition</span><h3>Celebrating success</h3><p>We recognise achievement and excellence — and reward endeavour, effort and participation just as loudly.</p></div>
+        <div class="card glass reveal d2" data-tilt><span class="tag">Character</span><h3>Pride & resilience</h3><p>We develop pride, diligence, respect, resilience and responsibility through fierce, friendly rivalry.</p></div>
+        <div class="card glass reveal" data-tilt><span class="tag">Leadership</span><h3>Student leaders</h3><p>Captains, Deputies and elected House Leaders in every year group organise events and lead assemblies.</p></div>
+        <div class="card glass reveal d1" data-tilt><span class="tag">Participation</span><h3>Mass turnout</h3><p>Our edge is numbers. The more Stamfordians who step up, the more we win — Shout, Sports Day and beyond.</p></div>
+        <div class="card glass reveal d2" data-tilt><span class="tag">Support</span><h3>Role models</h3><p>Supportive peers and older students who set the standard and bring the next generation through.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="section section--navy">
+  <section class="section">
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">The legacy</span>
+        <h2 class="section-title">Built by people who <span class="gradient-text">stepped up.</span></h2>
+        <p class="lead">House Shout dominance doesn't happen by accident. Year after year, Stamfordians have shown up, rehearsed, competed and carried the standard forward.</p>
+        <ul class="timeline mt">
+          <li><span>2019</span><h4>The house system returns</h4><p class="muted">Houses reintroduced across AGSB to build community and leadership.</p></li>
+          <li><span>Recent years</span><h4>House Shout dynasty</h4><p class="muted">Five-plus consecutive House Shout victories — the crown jewel of the calendar.</p></li>
+          <li><span>2024/25</span><h4>Carrying the torch</h4><p class="muted">Captain Bhuvan Vaddhireddy and Vice Leo Beesley lead on legacy, unity and mass participation.</p></li>
+          <li><span>2026/27</span><h4>The next chapter</h4><p class="muted">Daniel Stevenson and Ayaan Siddiqui take the helm. The standard stays the same: Stamford wins.</p></li>
+        </ul>
+      </div>
+      <div class="reveal d1" style="display:grid;gap:24px">
+        <div class="card glass"><blockquote class="quote">"Two thirds of the schoolhouse major trophy cabinet is adorned with blue for good reason."<cite>— Leo Beesley, 2024/25 Vice Captain</cite></blockquote></div>
+        <div class="card glass"><blockquote class="quote">"Stamford is more than just a name — it is a legacy, a tradition woven into the very fabric of our identity."<cite>— Bhuvan Vaddhireddy, 2024/25 Captain</cite></blockquote></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
     <div class="container center">
-      <span class="eyebrow">The colours</span>
-      <h2 class="section-title">Blue &amp; white. No exceptions.</h2>
-      <p class="lead" style="margin-inline:auto">Our shield carries horizontal blue and white stripes, royal-blue chevrons and a white crown — bold, heraldic and unmistakable.</p>
-      <div class="grid grid-4 mt" style="max-width:760px;margin-inline:auto">
-        <div class="card" style="background:#1a1aff;border:0;color:#fff"><h3 style="color:#fff">Royal</h3><p style="color:#dfe3ff">#1a1aff</p></div>
-        <div class="card" style="background:#2f8fd0;border:0;color:#fff"><h3 style="color:#fff">Steel</h3><p style="color:#e8f3fb">#2f8fd0</p></div>
-        <div class="card" style="background:#d8e9f5;border:0"><h3>Light</h3><p>#d8e9f5</p></div>
-        <div class="card"><h3>White</h3><p>#ffffff</p></div>
+      <div class="reveal"><span class="eyebrow">The colours</span><h2 class="section-title">Blue & white. <span class="gradient-text">No exceptions.</span></h2>
+      <p class="lead" style="margin-inline:auto">Horizontal blue and white stripes, royal-blue chevrons and a white crown — bold, heraldic, unmistakable.</p></div>
+      <div class="grid grid-4 mt" style="max-width:780px;margin-inline:auto">
+        <div class="card glass reveal" style="background:#2a4bff"><h3 style="color:#fff">Royal</h3><p style="color:#dfe3ff">#2a4bff</p></div>
+        <div class="card glass reveal d1" style="background:#2f8fd0"><h3 style="color:#fff">Steel</h3><p style="color:#eaf6ff">#2f8fd0</p></div>
+        <div class="card glass reveal d2" style="background:#6fd6ff"><h3 style="color:#04263a">Cyan</h3><p style="color:#04263a">#6fd6ff</p></div>
+        <div class="card glass reveal d3" style="background:#fff"><h3 style="color:#0b1437">White</h3><p style="color:#51618a">#ffffff</p></div>
       </div>
     </div>
   </section>
@@ -115,28 +104,11 @@
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
-          <div class="brand" style="margin-bottom:14px">
-            <img src="assets/crest.svg" alt="" style="width:44px" />
-            <span class="brand-text"><small style="color:#8ea2d6">AGSB · HOUSE</small><span style="color:#fff">STAMFORD</span></span>
-          </div>
-          <p>Altrincham Grammar School for Boys. Part of the Hamblin Education Trust. <em>Labor Omnia Vincit.</em></p>
-        </div>
-        <div><h4>Explore</h4><ul>
-          <li><a href="about.html">About Stamford</a></li>
-          <li><a href="leadership.html">Leadership Team</a></li>
-          <li><a href="events.html">House Events</a></li>
-          <li><a href="get-involved.html">Get Involved</a></li>
-        </ul></div>
-        <div><h4>School</h4><ul>
-          <li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">agsb.co.uk</a></li>
-          <li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">House System</a></li>
-        </ul></div>
+        <div><div class="brand" style="margin-bottom:14px"><img src="assets/crest.svg" alt="" style="width:46px" /><span class="brand-text"><small>AGSB · HOUSE</small><span>STAMFORD</span></span></div><p class="muted">Altrincham Grammar School for Boys. Part of the Hamblin Education Trust. <em>Labor Omnia Vincit.</em></p></div>
+        <div><h4>Explore</h4><ul><li><a href="about.html">About</a></li><li><a href="leadership.html">Leadership</a></li><li><a href="events.html">Events</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="get-involved.html">Get Involved</a></li></ul></div>
+        <div><h4>School</h4><ul><li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">agsb.co.uk</a></li><li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">House System</a></li></ul></div>
       </div>
-      <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Stamford House, AGSB. First-draft website.</span>
-        <span>Built in blue. 💙</span>
-      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> Stamford House, AGSB.</span><span>Built in blue. 💙</span></div>
     </div>
   </footer>
 

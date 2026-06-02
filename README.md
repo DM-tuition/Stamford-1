@@ -1,48 +1,56 @@
-# Stamford House — Website (First Draft)
+# Stamford House — Website
 
 Public/internal website for **Stamford House**, Altrincham Grammar School for Boys (AGSB).
 
 > *Labor Omnia Vincit* — Work Conquers All.
 
-## What's here
+A static, dark-first, mobile-friendly site with a futuristic visual language — animated
+aurora backdrop, particle starfield, glassmorphism, scroll reveals, count-ups, magnetic
+buttons, 3D crest tilt, page transitions, light/dark toggle — and a **live, filterable
+events calendar** driven by the real 2025/26 house calendar.
 
-A static, mobile-friendly multi-page site built with plain HTML/CSS/JS — no build step required.
+## Pages
 
 | Page | File | Content |
 |------|------|---------|
-| Home | `index.html` | Hero, stats, ethos, leadership preview |
+| Home | `index.html` | Animated hero, marquee, stats, house scoreboard, ethos, captains, CTA |
 | About | `about.html` | History, ethos, legacy timeline, colours |
-| Leadership | `leadership.html` | Captains, house structure, Senior Prefect Team |
-| Events | `events.html` | House Shout, Sports Day, debating, points |
-| Get Involved | `get-involved.html` | Ways to join + contact form |
+| Leadership | `leadership.html` | Captains + spotlight, house structure, Senior Prefect Team |
+| Events | `events.html` | **Live calendar** — filter by type & year, countdown to next event |
+| Gallery | `gallery.html` | "A season in blue" photo grid (placeholders) |
+| Get Involved | `get-involved.html` | Ways to join + contact form + sponsor |
 
 ```
-assets/crest.svg   Recreated Stamford crest (blue/white shield, crown)
-css/style.css      Design system (blue & white palette)
-js/main.js         Mobile nav + footer year
+assets/crest.svg     Recreated Stamford crest (SVG)
+assets/photos/       Drop daniel.jpg / ayaan.jpg + gallery shots here (see its README)
+css/style.css        Design system (dark-first + light theme)
+js/main.js           Cursor, particles, reveal, counters, tilt, theme, transitions
+js/events.js         Loads data/events.json → renders calendar, filters, countdown
+data/events.json     88 house events (Sept 2025 → Jul 2026), transcribed from the PDF
 ```
 
 ## Running it
 
-It's static — just open `index.html` in a browser, or serve the folder:
+The events calendar fetches `data/events.json`, so use a local server (not file://):
 
 ```bash
 python3 -m http.server 8000
-# then visit http://localhost:8000
+# visit http://localhost:8000
 ```
 
 ## Design notes
 
-- **Palette:** Royal `#1a1aff`, Steel `#2f8fd0`, Light `#d8e9f5`, Navy `#0a1f6b`, White. No rival-house colours in the brand.
-- **Fonts:** Montserrat (headings) + Inter (body) via Google Fonts.
-- The crest is an SVG recreation of the official Stamford shield. Swap in the official crest artwork when available.
+- **Palette:** Royal `#2a4bff`, Steel `#2f8fd0`, Cyan `#6fd6ff`, white. No rival-house colours.
+- **Fonts:** Space Grotesk (display) + Inter (body).
+- Honours `prefers-reduced-motion`; everything degrades gracefully.
 
 ## Before go-live — TODO
 
-- [ ] Replace the SVG crest with official artwork if higher fidelity is needed.
-- [ ] Add real photos (Daniel & Ayaan headshots, house events) — currently initials/placeholders.
-- [ ] Wire the **Get Involved** form to the house email or a form service (e.g. Formspree).
-- [ ] Confirm leadership names/roles and event details with the school.
-- [ ] Add live house-score feed / link if desired.
+- [ ] Add real photos to `assets/photos/` (Daniel, Ayaan, gallery) — placeholders auto-swap.
+- [ ] Replace the SVG crest with official artwork if higher fidelity is wanted.
+- [ ] Wire the **Get Involved** form to the house email / a form service (e.g. Formspree).
+- [ ] Confirm leadership names, event dates and "Year group/Number" cells with the school
+      (a few cells in the source PDF looked shifted; flagged rather than guessed).
+- [ ] Wire the home **scoreboard** to live house points if a data source exists.
 
-*First draft — June 2026.*
+*Last updated June 2026.*

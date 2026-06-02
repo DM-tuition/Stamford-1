@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,130 +8,89 @@
   <link rel="icon" href="assets/crest.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+  <div class="aurora"></div>
+  <canvas id="starfield"></canvas>
+  <div class="scroll-progress"></div>
   <div class="flag-strip"><i class="b"></i><i class="m"></i><i class="s"></i><i class="t"></i></div>
 
   <header class="site-header">
     <div class="container nav">
-      <a class="brand" href="index.html">
-        <img src="assets/crest.svg" alt="Stamford House crest" />
-        <span class="brand-text"><small>AGSB · HOUSE</small><span>STAMFORD</span></span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false"><span></span></button>
+      <a class="brand" href="index.html"><img src="assets/crest.svg" alt="Stamford crest" /><span class="brand-text"><small>AGSB · HOUSE</small><span>STAMFORD</span></span></a>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="about.html">About</a></li>
         <li><a href="leadership.html">Leadership</a></li>
         <li><a href="events.html">Events</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
         <li><a href="get-involved.html" class="active">Get Involved</a></li>
       </ul>
+      <div class="nav-tools"><button class="theme-toggle" aria-label="Toggle light/dark">☀</button><button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button></div>
     </div>
   </header>
 
   <section class="page-hero">
     <div class="container">
       <div class="breadcrumb"><a href="index.html">Home</a> → Get Involved</div>
-      <h1>Get Involved</h1>
+      <h1>Get <span class="gradient-text">Involved</span></h1>
       <p>Whatever your talent, there's a role for you in blue. Here's how to step up.</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <span class="eyebrow">Three ways in</span>
-      <h2 class="section-title">Find your role.</h2>
+      <div class="reveal"><span class="eyebrow">Three ways in</span><h2 class="section-title">Find your <span class="gradient-text">role.</span></h2></div>
       <div class="grid grid-3 mt">
-        <div class="card"><div class="card-icon">✋</div><h3>Show up</h3><p>The simplest and most powerful thing you can do. Turn up to House Shout, Sports Day and house events — and bring the energy.</p></div>
-        <div class="card"><div class="card-icon">⭐</div><h3>Bring a talent</h3><p>Sing, act, run, debate, play. Tell your House Leader what you're into and we'll find you a stage.</p></div>
-        <div class="card"><div class="card-icon">📋</div><h3>Lead something</h3><p>Stand to be a House Leader or Deputy in your year group, or pitch an idea to the Captains.</p></div>
+        <div class="card glass reveal" data-tilt><div class="card-icon">✋</div><h3>Show up</h3><p>The simplest and most powerful thing you can do. Turn up to House Shout, Sports Day and house events — and bring the energy.</p></div>
+        <div class="card glass reveal d1" data-tilt><div class="card-icon">⭐</div><h3>Bring a talent</h3><p>Sing, act, run, debate, play. Tell your House Leader what you're into and we'll find you a stage.</p></div>
+        <div class="card glass reveal d2" data-tilt><div class="card-icon">📋</div><h3>Lead something</h3><p>Stand to be a House Leader or Deputy in your year group, or pitch an idea to the Captains.</p></div>
       </div>
     </div>
   </section>
 
-  <section class="section section--light">
-    <div class="container">
-      <div class="split">
-        <div>
-          <span class="eyebrow">Contact the house</span>
-          <h2 class="section-title">Our door is always open.</h2>
-          <p class="lead">Got a question, an idea, or want to sign up for an event? Drop us a message and the leadership team will get back to you.</p>
-          <p style="margin-top:16px;color:var(--muted)"><strong>House Captain:</strong> Daniel Stevenson<br /><strong>Vice Captain:</strong> Ayaan Siddiqui</p>
-          <p style="margin-top:10px;color:var(--muted)">Prefer in person? Find your year-group House Leader, or speak to the staff House Manager for Stamford.</p>
-        </div>
-        <div>
-          <!-- First-draft form: wire the action up to email/Formspree before launch -->
-          <form class="form" action="#" method="post" onsubmit="return false;">
-            <div>
-              <label for="name">Name</label>
-              <input id="name" name="name" type="text" placeholder="Your name" required />
-            </div>
-            <div class="form-row">
-              <div>
-                <label for="year">Year group</label>
-                <select id="year" name="year">
-                  <option>Year 7</option><option>Year 8</option><option>Year 9</option>
-                  <option>Year 10</option><option>Year 11</option>
-                  <option>Year 12</option><option>Year 13</option><option>Staff</option>
-                </select>
-              </div>
-              <div>
-                <label for="interest">I'm interested in</label>
-                <select id="interest" name="interest">
-                  <option>House Shout</option><option>Sports Day</option>
-                  <option>Debating</option><option>Drama / Arts</option>
-                  <option>Leading something</option><option>Just getting involved</option>
-                </select>
-              </div>
-            </div>
-            <div>
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="4" placeholder="Tell us what you'd like to do for Stamford…"></textarea>
-            </div>
-            <div><button class="btn btn--primary" type="submit">Send to the team</button></div>
-            <p style="font-size:.82rem;color:var(--muted)">This is a first-draft form — connect it to the house email or a form service before go-live.</p>
-          </form>
-        </div>
+  <section class="section">
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">Contact the house</span>
+        <h2 class="section-title">Our door is <span class="gradient-text">always open.</span></h2>
+        <p class="lead">Got a question, an idea, or want to sign up for an event? Drop us a message and the leadership team will get back to you.</p>
+        <p class="muted mt"><strong>House Captain:</strong> Daniel Stevenson<br /><strong>Vice Captain:</strong> Ayaan Siddiqui</p>
+        <p class="muted mt">Prefer in person? Find your year-group House Leader, or speak to the staff House Manager for Stamford.</p>
+      </div>
+      <div class="card glass reveal d1">
+        <form class="form" action="#" method="post" onsubmit="this.querySelector('.form-msg').hidden=false; return false;" style="display:grid;gap:16px">
+          <div><label for="name" style="font-weight:600;display:block;margin-bottom:6px">Name</label><input id="name" name="name" type="text" placeholder="Your name" required style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--stroke);background:var(--panel);color:var(--text);font:inherit" /></div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+            <div><label for="year" style="font-weight:600;display:block;margin-bottom:6px">Year group</label><select id="year" name="year" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--stroke);background:var(--panel);color:var(--text);font:inherit"><option>Year 7</option><option>Year 8</option><option>Year 9</option><option>Year 10</option><option>Year 11</option><option>Year 12</option><option>Year 13</option><option>Staff</option></select></div>
+            <div><label for="interest" style="font-weight:600;display:block;margin-bottom:6px">Interested in</label><select id="interest" name="interest" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--stroke);background:var(--panel);color:var(--text);font:inherit"><option>House Shout</option><option>Sports Day</option><option>Debating</option><option>Drama / Arts</option><option>Leading something</option><option>Just getting involved</option></select></div>
+          </div>
+          <div><label for="message" style="font-weight:600;display:block;margin-bottom:6px">Message</label><textarea id="message" name="message" rows="4" placeholder="Tell us what you'd like to do for Stamford…" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--stroke);background:var(--panel);color:var(--text);font:inherit"></textarea></div>
+          <div><button class="btn btn--primary" type="submit">Send to the team →</button></div>
+          <p class="form-msg" hidden style="color:var(--cyan)">Thanks! This is a demo form — connect it to the house email or a form service to go live.</p>
+        </form>
       </div>
     </div>
   </section>
 
-  <section class="section section--navy">
+  <section class="section">
     <div class="container center">
-      <span class="eyebrow">Sponsor</span>
-      <h2 class="section-title">Proudly supported by ABC+ Warranty</h2>
+      <div class="reveal"><span class="eyebrow">Sponsor</span><h2 class="section-title">Proudly supported by <span class="gradient-text">ABC+ Warranty</span></h2>
       <p class="lead" style="margin-inline:auto">Stamford's activities are backed by ABC+ Warranty, a local Altrincham structural warranty company.</p>
-      <div class="mt"><a class="btn btn--ghost" href="https://www.architectscertificate.co.uk" target="_blank" rel="noopener">Visit ABC+ Warranty</a></div>
+      <div class="mt"><a class="btn btn--ghost" href="https://www.architectscertificate.co.uk" target="_blank" rel="noopener">Visit ABC+ Warranty →</a></div></div>
     </div>
   </section>
 
   <footer class="site-footer">
     <div class="container">
       <div class="footer-grid">
-        <div>
-          <div class="brand" style="margin-bottom:14px">
-            <img src="assets/crest.svg" alt="" style="width:44px" />
-            <span class="brand-text"><small style="color:#8ea2d6">AGSB · HOUSE</small><span style="color:#fff">STAMFORD</span></span>
-          </div>
-          <p>Altrincham Grammar School for Boys. Part of the Hamblin Education Trust. <em>Labor Omnia Vincit.</em></p>
-        </div>
-        <div><h4>Explore</h4><ul>
-          <li><a href="about.html">About Stamford</a></li>
-          <li><a href="leadership.html">Leadership Team</a></li>
-          <li><a href="events.html">House Events</a></li>
-          <li><a href="get-involved.html">Get Involved</a></li>
-        </ul></div>
-        <div><h4>School</h4><ul>
-          <li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">agsb.co.uk</a></li>
-          <li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">House System</a></li>
-        </ul></div>
+        <div><div class="brand" style="margin-bottom:14px"><img src="assets/crest.svg" alt="" style="width:46px" /><span class="brand-text"><small>AGSB · HOUSE</small><span>STAMFORD</span></span></div><p class="muted">Altrincham Grammar School for Boys. Part of the Hamblin Education Trust. <em>Labor Omnia Vincit.</em></p></div>
+        <div><h4>Explore</h4><ul><li><a href="about.html">About</a></li><li><a href="leadership.html">Leadership</a></li><li><a href="events.html">Events</a></li><li><a href="gallery.html">Gallery</a></li><li><a href="get-involved.html">Get Involved</a></li></ul></div>
+        <div><h4>School</h4><ul><li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">agsb.co.uk</a></li><li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">House System</a></li></ul></div>
       </div>
-      <div class="footer-bottom">
-        <span>© <span data-year>2026</span> Stamford House, AGSB. First-draft website.</span>
-        <span>Built in blue. 💙</span>
-      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> Stamford House, AGSB.</span><span>Built in blue. 💙</span></div>
     </div>
   </footer>
 
