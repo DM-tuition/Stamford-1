@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 230" role="img" aria-label="Stamford House crest">
+  <defs>
+    <clipPath id="shield">
+      <path d="M10 8 H190 V120 C190 175 150 210 100 224 C50 210 10 175 10 120 Z"/>
+    </clipPath>
+  </defs>
+  <!-- Shield outline -->
+  <path d="M10 8 H190 V120 C190 175 150 210 100 224 C50 210 10 175 10 120 Z"
+        fill="#ffffff" stroke="#0a1f6b" stroke-width="4"/>
+  <g clip-path="url(#shield)">
+    <!-- white base -->
+    <rect x="0" y="0" width="200" height="230" fill="#ffffff"/>
+    <!-- steel-blue horizontal bands -->
+    <rect x="0" y="46"  width="200" height="26" fill="#2f8fd0"/>
+    <rect x="0" y="96"  width="200" height="26" fill="#2f8fd0"/>
+    <rect x="0" y="146" width="200" height="26" fill="#2f8fd0"/>
+    <!-- royal blue inverted chevron from the top -->
+    <polygon points="60,8 140,8 100,90" fill="#1a1aff"/>
+    <!-- royal blue side chevrons -->
+    <polygon points="10,108 40,134 10,160" fill="#1a1aff"/>
+    <polygon points="190,108 160,134 190,160" fill="#1a1aff"/>
+    <!-- royal blue diamond at the foot -->
+    <polygon points="100,176 124,200 100,224 76,200" fill="#1a1aff"/>
+    <!-- crown -->
+    <g fill="#ffffff" transform="translate(100,42)">
+      <path d="M-26 4 L-26 -8 L-17 0 L-9 -12 L0 -2 L9 -12 L17 0 L26 -8 L26 4 Z"/>
+      <rect x="-26" y="4" width="52" height="6"/>
+      <circle cx="-26" cy="-10" r="2.4"/>
+      <circle cx="-9" cy="-14" r="2.4"/>
+      <circle cx="0" cy="-4" r="2.4"/>
+      <circle cx="9" cy="-14" r="2.4"/>
+      <circle cx="26" cy="-10" r="2.4"/>
+    </g>
+  </g>
+</svg>
