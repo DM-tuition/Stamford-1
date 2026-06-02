@@ -229,6 +229,88 @@
     spied.forEach(function (s) { spyIo.observe(s); });
   }
 
+  /* ---- Split text into characters ---- */
+  function splitChars(el, gradChars) {
+    var i = 0;
+    (function walk(node) {
+      Array.prototype.slice.call(node.childNodes).forEach(function (n) {
+        if (n.nodeType === 3) {
+          if (!n.textContent.trim()) return;
+          var frag = document.createDocumentFragment();
+          n.textContent.split("").forEach(function (ch) {
+            if (ch === " ") { frag.appendChild(document.createTextNode(" ")); return; }
+            var s = document.createElement("span");
+            s.className = "char" + (gradChars ? " char--grad" : "");
+            s.textContent = ch; s.style.setProperty("--i", i++);
+            frag.appendChild(s);
+          });
+          node.replaceChild(frag, n);
+        } else if (n.nodeType === 1) {
+          if (!gradChars && n.classList.contains("gradient-text")) { n.classList.add("char"); n.style.setProperty("--i", i++); }
+          else walk(n);
+        }
+      });
+    })(el);
+  }
+
+  if (!reduced) {
+    // Floating hero word (per-letter gradient)
+    document.querySelectorAll(".hero h1 .gradient-text").forEach(function (g) {
+      g.classList.add("floaty"); splitChars(g, true);
+    });
+    // Letter-by-letter reveal on headings
+    var splitTargets = document.querySelectorAll(".section-title, .page-hero h1");
+    splitTargets.forEach(function (h) { h.setAttribute("data-split", ""); splitChars(h, false); });
+    if ("IntersectionObserver" in window) {
+      var sio = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add("in"); sio.unobserve(en.target); } });
+      }, { threshold: 0.2 });
+      document.querySelectorAll("[data-split]").forEach(function (h) { sio.observe(h); });
+    } else { document.querySelectorAll("[data-split]").forEach(function (h) { h.classList.add("in"); }); }
+  }
+
+  /* ---- Drifting background orbs ---- */
+  if (!reduced) {
+    var heroEl = document.querySelector(".hero") || document.querySelector(".page-hero");
+    if (heroEl) {
+      [{ s: 280, x: "6%", y: "18%", c: "rgba(42,75,255,.5)", t: 17, d: 0 },
+       { s: 200, x: "80%", y: "10%", c: "rgba(111,214,255,.4)", t: 21, d: 2 },
+       { s: 170, x: "64%", y: "70%", c: "rgba(47,143,208,.4)", t: 15, d: 1 }].forEach(function (o) {
+        var el = document.createElement("span"); el.className = "orb";
+        el.style.cssText = "width:" + o.s + "px;height:" + o.s + "px;left:" + o.x + ";top:" + o.y +
+          ";background:radial-gradient(circle," + o.c + ",transparent 70%);animation:floatOrb " + o.t + "s ease-in-out infinite;animation-delay:" + o.d + "s;";
+        heroEl.insertBefore(el, heroEl.firstChild);
+      });
+    }
+  }
+
+  /* ---- Sparkle burst ---- */
+  window.stamfordSparkle = function (x, y, count) {
+    if (reduced) return;
+    var glyphs = ["✦", "✧", "✺", "＊", "•"], colors = ["#6fd6ff", "#4d6bff", "#9fc4ff", "#ffffff"];
+    for (var i = 0; i < (count || 16); i++) {
+      var s = document.createElement("span"); s.className = "spark";
+      s.textContent = glyphs[(Math.random() * glyphs.length) | 0];
+      s.style.left = x + "px"; s.style.top = y + "px";
+      s.style.color = colors[(Math.random() * colors.length) | 0];
+      s.style.fontSize = (8 + Math.random() * 12) + "px";
+      document.body.appendChild(s);
+      var a = Math.random() * Math.PI * 2, dist = 40 + Math.random() * 95;
+      var dx = Math.cos(a) * dist, dy = Math.sin(a) * dist - 20;
+      (function (node) {
+        node.animate([
+          { transform: "translate(-50%,-50%) scale(1) rotate(0deg)", opacity: 1 },
+          { transform: "translate(calc(-50% + " + dx + "px),calc(-50% + " + dy + "px)) scale(0) rotate(" + (Math.random() * 360) + "deg)", opacity: 0 }
+        ], { duration: 700 + Math.random() * 500, easing: "cubic-bezier(.2,.7,.3,1)" }).onfinish = function () { node.remove(); };
+      })(s);
+    }
+  };
+  document.addEventListener("click", function (e) {
+    if (e.target.closest(".btn--primary, .theme-toggle, [data-sparkle]")) window.stamfordSparkle(e.clientX, e.clientY, 18);
+    var flag = e.target.closest(".event-card.flagship");
+    if (flag) { var r = flag.getBoundingClientRect(); window.stamfordSparkle(e.clientX || r.left + r.width / 2, e.clientY || r.top + 30, 22); }
+  });
+
   /* ---- Page transition ---- */
   if (!reduced) {
     var curtain = document.createElement("div"); curtain.className = "curtain"; document.body.appendChild(curtain);
