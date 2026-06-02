@@ -9,7 +9,7 @@
     var pl = document.createElement("div");
     pl.className = "preloader";
     pl.innerHTML = '<div style="text-align:center">' +
-      '<img class="pl-crest" src="assets/crest.svg" alt="" />' +
+      '<img class="pl-crest" src="assets/crest.png" onerror="this.onerror=null;this.src=\'assets/crest.svg\'" alt="" />' +
       '<div class="pl-bar"><i></i></div>' +
       '<div class="pl-word">Stamford</div></div>';
     (document.body || document.documentElement).appendChild(pl);
