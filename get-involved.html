@@ -59,18 +59,50 @@
         <p class="lead">Got a question, an idea, or want to sign up for an event? Drop us a message and the leadership team will get back to you.</p>
         <p class="muted mt"><strong>House Captain:</strong> Daniel Stevenson<br /><strong>Vice Captain:</strong> Ayaan Siddiqui</p>
         <p class="muted mt">Prefer in person? Find your year-group House Leader, or speak to the staff House Manager for Stamford.</p>
+        <div class="mt"><button class="copy-chip" data-copy="stamford.house@agsb.co.uk">📋 stamford.house@agsb.co.uk</button></div>
+        <p class="muted" style="font-size:.8rem;margin-top:8px">Placeholder address — swap for the real house inbox.</p>
       </div>
       <div class="card glass reveal d1">
-        <form class="form" action="#" method="post" onsubmit="this.querySelector('.form-msg').hidden=false; return false;" style="display:grid;gap:16px">
-          <div><label for="name" style="font-weight:600;display:block;margin-bottom:6px">Name</label><input id="name" name="name" type="text" placeholder="Your name" required style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--stroke);background:var(--panel);color:var(--text);font:inherit" /></div>
-          <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
-            <div><label for="year" style="font-weight:600;display:block;margin-bottom:6px">Year group</label><select id="year" name="year" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--stroke);background:var(--panel);color:var(--text);font:inherit"><option>Year 7</option><option>Year 8</option><option>Year 9</option><option>Year 10</option><option>Year 11</option><option>Year 12</option><option>Year 13</option><option>Staff</option></select></div>
-            <div><label for="interest" style="font-weight:600;display:block;margin-bottom:6px">Interested in</label><select id="interest" name="interest" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--stroke);background:var(--panel);color:var(--text);font:inherit"><option>House Shout</option><option>Sports Day</option><option>Debating</option><option>Drama / Arts</option><option>Leading something</option><option>Just getting involved</option></select></div>
+        <form class="form2" novalidate onsubmit="window.stamfordToast &amp;&amp; window.stamfordToast('Thanks — message ready to send! Connect this form to go live.','✉️'); this.reset(); return false;">
+          <div class="field">
+            <input id="name" name="name" type="text" placeholder=" " required />
+            <label for="name">Your name</label>
           </div>
-          <div><label for="message" style="font-weight:600;display:block;margin-bottom:6px">Message</label><textarea id="message" name="message" rows="4" placeholder="Tell us what you'd like to do for Stamford…" style="width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--stroke);background:var(--panel);color:var(--text);font:inherit"></textarea></div>
+          <div class="field-row">
+            <div class="field field--select">
+              <select id="year" name="year">
+                <option>Year 7</option><option>Year 8</option><option>Year 9</option><option>Year 10</option><option>Year 11</option><option>Year 12</option><option>Year 13</option><option>Staff</option>
+              </select>
+              <label for="year">Year group</label>
+            </div>
+            <div class="field field--select">
+              <select id="interest" name="interest">
+                <option>House Shout</option><option>Sports Day</option><option>Debating</option><option>Drama / Arts</option><option>Music</option><option>Leading something</option><option>Just getting involved</option>
+              </select>
+              <label for="interest">Interested in</label>
+            </div>
+          </div>
+          <div class="field">
+            <textarea id="message" name="message" placeholder=" "></textarea>
+            <label for="message">Your message</label>
+          </div>
           <div><button class="btn btn--primary" type="submit">Send to the team →</button></div>
-          <p class="form-msg" hidden style="color:var(--cyan)">Thanks! This is a demo form — connect it to the house email or a form service to go live.</p>
+          <p class="muted" style="font-size:.8rem">Demo form — connect it to the house email or a service like Formspree to go live.</p>
         </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container">
+      <div class="reveal" style="max-width:760px;margin-inline:auto"><span class="eyebrow">Good to know</span><h2 class="section-title center">Frequently <span class="gradient-text">asked</span></h2></div>
+      <div class="faq mt reveal" style="max-width:760px;margin-inline:auto">
+        <details><summary>How am I put into a house?</summary><div class="faq-body">Every pupil and member of staff is assigned to one of the four houses — Bradbury, Massey, Stamford or Tatton. Siblings are always placed in the same house, so families stay together in blue.</div></details>
+        <details><summary>How do I earn points for Stamford?</summary><div class="faq-body">Points come from competing — and from simply taking part — across 70+ events all year. Some events even reward points based on how many Stamfordians turn up, so showing up genuinely matters.</div></details>
+        <details><summary>What's the biggest event?</summary><div class="faq-body">The House Shout — a performing-arts and singing competition where each house performs three times. It's Stamford's crown jewel, and mass participation is the secret to winning it.</div></details>
+        <details><summary>How do I become a House Leader?</summary><div class="faq-body">House Leaders and Deputies are elected within each year group to organise events and rally participation. Express your interest through the form above or speak to the Captains directly.</div></details>
+        <details><summary>I'm not especially sporty or musical — is there still a place for me?</summary><div class="faq-body">Absolutely. The calendar spans debating, chess, quizzes, art, photography, baking, entrepreneurship, eSports and more. Whatever your strength, there's a competition for it.</div></details>
       </div>
     </div>
   </section>
