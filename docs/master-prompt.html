@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Stamford House Website — Master Context Document</title>
+<style>
+  body { font-family: 'Liberation Sans', Arial, sans-serif; color: #14213d; font-size: 11pt; line-height: 1.45; }
+  h1 { color: #1a3aff; font-size: 26pt; margin-bottom: 2px; }
+  h2 { color: #0a1f6b; font-size: 15pt; border-bottom: 2px solid #2f8fd0; padding-bottom: 3px; margin-top: 22px; }
+  h3 { color: #1f6fb2; font-size: 12pt; margin-top: 14px; margin-bottom: 2px; }
+  .sub { color: #5b6473; font-size: 10.5pt; margin-top: 0; }
+  code, .mono { font-family: 'Liberation Mono', 'Courier New', monospace; font-size: 9.5pt; color: #0a1f6b; }
+  table { border-collapse: collapse; width: 100%; margin: 8px 0; font-size: 10pt; }
+  th, td { border: 1px solid #c9d4e6; padding: 5px 8px; text-align: left; vertical-align: top; }
+  th { background: #eaf1fb; color: #0a1f6b; }
+  ul { margin-top: 4px; }
+  li { margin-bottom: 3px; }
+  .tag { background: #eaf1fb; color: #1a3aff; padding: 1px 6px; border-radius: 4px; font-size: 9pt; }
+  .note { background: #f4f8fd; border-left: 3px solid #2f8fd0; padding: 6px 10px; margin: 8px 0; font-size: 10pt; }
+  .todo { background: #fff7e6; border-left: 3px solid #f5b800; padding: 6px 10px; margin: 8px 0; }
+  hr { border: none; border-top: 1px solid #dde5f0; margin: 18px 0; }
+  .small { font-size: 9.5pt; color: #5b6473; }
+</style>
+</head>
+<body>
+
+<h1>Stamford House Website</h1>
+<p class="sub"><b>Master Context Document &amp; Build Brief</b> — everything an unfamiliar assistant needs to continue this project. Generated June 2026.</p>
+
+<div class="note">
+<b>One-line summary:</b> A static, dark-first, animation-rich marketing/community website for <b>Stamford House</b> at Altrincham Grammar School for Boys (AGSB), featuring a live, filterable house-events calendar. Plain HTML/CSS/JS — no build step. Lives on the <code>main</code> branch of GitHub repo <code>dm-tuition/stamford-1</code>.
+</div>
+
+<h2>1. What this project is</h2>
+<ul>
+  <li><b>Purpose:</b> Public/internal site for Stamford House — promote the house, show its identity &amp; legacy, list the year's competitions, and let students get involved.</li>
+  <li><b>Audience:</b> Stamford students (all year groups), prospective members, the wider AGSB community.</li>
+  <li><b>Owner/contact:</b> dmtuition2026@gmail.com. Built for the 2026/27 Stamford leadership (Captain Daniel Stevenson, Vice Captain Ayaan Siddiqui).</li>
+  <li><b>Repo:</b> <code>dm-tuition/stamford-1</code> &nbsp;|&nbsp; <b>Branch:</b> <code>main</code> (everything is committed and pushed here).</li>
+</ul>
+
+<h2>2. Tech stack &amp; architecture</h2>
+<ul>
+  <li><b>Pure static site</b> — no framework, no build, no package manager. Just HTML + CSS + vanilla JS.</li>
+  <li><b>Fonts:</b> Google Fonts — <span class="mono">Space Grotesk</span> (display/headings) + <span class="mono">Inter</span> (body).</li>
+  <li><b>No external JS libraries</b> — all animation/interactivity is hand-written vanilla JS (deliberately, so it works offline and has zero dependencies).</li>
+  <li><b>Data-driven calendar:</b> the Events page fetches <code>data/events.json</code> at runtime and renders it.</li>
+</ul>
+
+<div class="note"><b>Important gotcha:</b> because the calendar uses <code>fetch()</code>, the site must be served over HTTP, not opened via <code>file://</code>. Locally: <code>python3 -m http.server 8000</code> then visit <code>http://localhost:8000</code>. (All other pages work fine from <code>file://</code>; only the calendar needs a server.)</div>
+
+<h2>3. File structure</h2>
+<table>
+<tr><th>Path</th><th>What it is</th></tr>
+<tr><td class="mono">index.html</td><td>Home — animated hero, marquee, stats, house scoreboard, ethos, events preview, captain spotlight, quote carousel, CTA.</td></tr>
+<tr><td class="mono">about.html</td><td>Identity, ethos grid, legacy timeline (2019→2026/27), colour palette.</td></tr>
+<tr><td class="mono">leadership.html</td><td>Captains + spotlight, house leadership structure, full Senior Prefect Team (all four houses).</td></tr>
+<tr><td class="mono">events.html</td><td>Live events calendar: countdown, season stats, search, type/year filters, grid/list toggle, jump-to-month, .ics download.</td></tr>
+<tr><td class="mono">gallery.html</td><td>"A season in blue" — masonry photo grid (placeholder tiles for now).</td></tr>
+<tr><td class="mono">get-involved.html</td><td>Three ways in, contact form (floating labels), copy-email chip, FAQ accordion, sponsor.</td></tr>
+<tr><td class="mono">404.html</td><td>Custom not-found page.</td></tr>
+<tr><td class="mono">css/style.css</td><td>The entire design system + all component styles + flair layer + responsive + reduced-motion.</td></tr>
+<tr><td class="mono">js/main.js</td><td>Global behaviours (see §6). Loaded on every page.</td></tr>
+<tr><td class="mono">js/events.js</td><td>Calendar engine — loads/render/filter/search/ics/countdown. Loaded on events.html only.</td></tr>
+<tr><td class="mono">data/events.json</td><td>88 house events for 2025/26 (the live data source).</td></tr>
+<tr><td class="mono">assets/crest.png</td><td><b>Primary crest</b> — refined gold-framed transparent PNG. Used site-wide.</td></tr>
+<tr><td class="mono">assets/crest.svg</td><td>Vector fallback crest (older, flat).</td></tr>
+<tr><td class="mono">assets/crest-photo.jpeg</td><td>Original crest photo with stone background (source reference / secondary fallback).</td></tr>
+<tr><td class="mono">assets/photos/</td><td>Drop captain portraits (daniel.jpg, ayaan.jpg) + gallery images here.</td></tr>
+<tr><td class="mono">README.md, CLAUDE.md</td><td>Repo readme + the brand/school context master prompt.</td></tr>
+</table>
+
+<h2>4. Design system</h2>
+<h3>Palette (CSS variables in <span class="mono">:root</span>)</h3>
+<ul>
+  <li>Royal <span class="mono">#2a4bff</span> · Royal-bright <span class="mono">#4d6bff</span> · Steel <span class="mono">#2f8fd0</span> · Cyan <span class="mono">#6fd6ff</span> · Light <span class="mono">#d8e9f5</span></li>
+  <li>Dark surfaces: bg <span class="mono">#04081e</span>, bg-2 <span class="mono">#070d2a</span>; text <span class="mono">#eaf0ff</span>, muted <span class="mono">#93a4cf</span>.</li>
+  <li><b>Dark-first</b> with a <b>light theme</b> via <span class="mono">html[data-theme="light"]</span>, toggled by the ☀/☾ button (persisted in <span class="mono">localStorage</span> key <span class="mono">stamford-theme</span>).</li>
+  <li><b>No rival-house colours in the brand</b> (red=Bradbury, green=Massey, yellow=Tatton). They appear only in the flag strip and the Senior Prefect Team cards.</li>
+</ul>
+<h3>Key reusable classes</h3>
+<p class="small"><span class="mono">.glass</span> (frosted card), <span class="mono">.card</span>, <span class="mono">.btn .btn--primary/.btn--ghost</span>, <span class="mono">.section</span>, <span class="mono">.eyebrow</span>, <span class="mono">.section-title</span>, <span class="mono">.gradient-text</span>, <span class="mono">.reveal</span> (+ <span class="mono">.d1/.d2/.d3</span> stagger), <span class="mono">.split</span>, <span class="mono">.grid .grid-2/3/4</span>, <span class="mono">.spotlight</span>, <span class="mono">.person</span>, <span class="mono">.scoreboard</span>, <span class="mono">.timeline</span>, <span class="mono">.cta-band</span>, <span class="mono">[data-tilt]</span>, <span class="mono">[data-spy]</span>.</p>
+
+<h2>5. The crest / logo system</h2>
+<ul>
+  <li>Every crest <span class="mono">&lt;img&gt;</span> uses <span class="mono">src="assets/crest.png"</span> with <span class="mono">onerror</span> fallback to <span class="mono">assets/crest-photo.jpeg</span>. The favicon points to <span class="mono">assets/crest.png</span>.</li>
+  <li><b>To change the crest:</b> replace <code>assets/crest.png</code> (transparent PNG recommended). It updates nav, hero, footers, captain badges, preloader and favicon at once.</li>
+  <li>Hero crest size is set in CSS: <span class="mono">.hero-crest img { width: min(480px, 86vw) }</span>.</li>
+</ul>
+<div class="note"><b>History note:</b> the crest went through several iterations (flat SVG → textured photo → background-removed cutout → refined gold-framed enamel PNG). The current/approved one is the <b>refined gold-framed transparent PNG</b> at <code>assets/crest.png</code>.</div>
+
+<h2>6. JavaScript features</h2>
+<h3>js/main.js (every page)</h3>
+<ul>
+  <li>Preloader (crest + load bar, centered), film-grain overlay, skip-to-content link, focus-visible.</li>
+  <li>Light/dark theme toggle (persisted); mobile nav; footer year auto-fill.</li>
+  <li>Scroll-progress bar; header hides on scroll-down / shows on scroll-up.</li>
+  <li>Custom glowing cursor; magnetic buttons; 3D crest tilt; card tilt (<span class="mono">[data-tilt]</span>).</li>
+  <li>Scroll-reveal (IntersectionObserver); count-up numbers; animated scoreboard bars.</li>
+  <li>Particle "starfield" canvas; drifting background orbs in heroes.</li>
+  <li><b>Flair:</b> floating per-letter hero wordmark; letter-by-letter heading reveals; flowing gradient text; glare sweep on cards/buttons; blue sparkle burst on primary buttons / theme toggle / flagship cards.</li>
+  <li>Quote carousel; scroll-spy dots (built from <span class="mono">[data-spy]</span> sections on the home page); page-transition curtain.</li>
+  <li>Global helpers: <span class="mono">window.stamfordToast(msg, icon)</span>, <span class="mono">window.stamfordSparkle(x,y,count)</span>, <span class="mono">window.stamfordCountUp(el)</span>.</li>
+  <li>Everything respects <span class="mono">prefers-reduced-motion</span> (animations disabled / instant).</li>
+</ul>
+<h3>js/events.js (events.html)</h3>
+<ul>
+  <li>Fetches <span class="mono">data/events.json</span>; renders cards grouped by month.</li>
+  <li>Filters: <b>type</b> (Sport / Academic / Arts / Performance / Social) with live counts, and <b>year group</b>.</li>
+  <li><b>Live text search</b>; <b>grid/list view</b> toggle; <b>jump-to-month</b> nav.</li>
+  <li><b>Countdown</b> to the next dated event (relative to today).</li>
+  <li><b>"Add to calendar"</b> generates a downloadable <span class="mono">.ics</span> per dated event.</li>
+  <li><b>Season stats</b> computed live (totals by category, months).</li>
+</ul>
+
+<h2>7. Events data model (<span class="mono">data/events.json</span>)</h2>
+<p>Top-level: <span class="mono">meta</span>, <span class="mono">categories</span> (array), <span class="mono">events</span> (array). Each event:</p>
+<table>
+<tr><th>Field</th><th>Meaning</th></tr>
+<tr><td class="mono">title</td><td>Event name (flagship House Shout marked with <span class="mono">flagship: true</span>).</td></tr>
+<tr><td class="mono">staff</td><td>Staff lead / organiser.</td></tr>
+<tr><td class="mono">date</td><td>ISO date (<span class="mono">YYYY-MM-DD</span>) or <span class="mono">null</span> if TBC. Drives countdown + .ics.</td></tr>
+<tr><td class="mono">dateLabel</td><td>Human label shown on the card (e.g. "Thu 16 Oct", "Feb – May", "TBC").</td></tr>
+<tr><td class="mono">month</td><td>Group header (e.g. "October 2025"). Sept–Dec = 2025, Jan–Jul = 2026.</td></tr>
+<tr><td class="mono">yearGroup, number</td><td>Who it's for, and participant count/notes.</td></tr>
+<tr><td class="mono">ethos</td><td>Array of tag words.</td></tr>
+<tr><td class="mono">notes</td><td>Free-text details.</td></tr>
+<tr><td class="mono">category</td><td>One of the 5 categories (drives filtering + colour).</td></tr>
+</table>
+<p class="small">Transcribed from the school's "25-26 Events" PDF (the Annual House Events Calendar 2025/26): ~88 rows across Sept 2025 → Jul 2026. Flagship events include House Shout (Oct), and the season ends with Sports Days (30 Jun / 1 Jul).</p>
+<div class="todo"><b>Data caveat:</b> a few cells in the source PDF looked column-shifted (some cricket "Year group/Number" values). They were transcribed as-shown rather than guessed — worth a human check before treating as authoritative. Also the source's "December 2024" header is treated as Dec 2025.</div>
+
+<h2>8. Brand &amp; voice (from CLAUDE.md)</h2>
+<ul>
+  <li><b>School:</b> Altrincham Grammar School for Boys (AGSB), Hamblin Education Trust. Motto: <i>Labor Omnia Vincit</i> ("Work Conquers All").</li>
+  <li><b>Houses:</b> Bradbury (red), Massey (green), Stamford (blue), Tatton (yellow). Reintroduced 2019.</li>
+  <li><b>Stamford identity:</b> the dominant house — collaborative, high-achieving, inclusive. ~5–6 years of House Shout dominance; "two thirds of the trophy cabinet is blue." Ethos: every student has a role; mass participation wins.</li>
+  <li><b>Voice:</b> confident, direct, inclusive, legacy-aware, warm from leadership. Avoid corporate filler and committee-speak.</li>
+</ul>
+<h3>Leadership 2026/27</h3>
+<table>
+<tr><th>Role</th><th>Name</th><th>Notes</th></tr>
+<tr><td>House Captain</td><td>Daniel Stevenson</td><td>Y13. Volleyball club founder, football &amp; hockey, co-directs Finance Society. A-levels: Further Maths, Maths, Physics, Economics. Aiming for Finance at Oxbridge.</td></tr>
+<tr><td>Vice Captain</td><td>Ayaan Siddiqui</td><td>Y13. Co-founder of "AyaanDanShenanigins" endurance charity brand.</td></tr>
+<tr><td>Head Prefect</td><td>Julian Bendon</td><td>Across-school.</td></tr>
+</table>
+<p class="small">Other houses 2026/27 — Bradbury: Aadith Menon / Panchu Nucherla · Massey: Soorian Jegatheeswaran / Gregory Singh · Tatton: Edward Aloul / Anthony Ononye. Sponsor: ABC+ Warranty (architectscertificate.co.uk).</p>
+
+<h2>9. How to run &amp; deploy</h2>
+<ul>
+  <li><b>Local:</b> <span class="mono">python3 -m http.server 8000</span> in the repo root → <span class="mono">http://localhost:8000</span>.</li>
+  <li><b>Deploy:</b> any static host. Recommended: <b>GitHub Pages</b> (serve <code>main</code> at root) — not yet set up. Netlify/Vercel also work with zero config.</li>
+  <li><b>Git workflow:</b> commit + push to <code>main</code>. (Earlier work used branch <code>claude/website-first-draft-87H4Y</code>, since merged.)</li>
+</ul>
+
+<h2>10. Outstanding / future work (TO DO)</h2>
+<div class="todo">
+<ul>
+  <li><b>Captain photos:</b> add <span class="mono">assets/photos/daniel.jpg</span> &amp; <span class="mono">ayaan.jpg</span> — they auto-replace the initials placeholders.</li>
+  <li><b>Gallery images:</b> replace the placeholder tiles in <code>gallery.html</code> with real event photos.</li>
+  <li><b>Contact form:</b> currently a demo (shows a toast, no send). Wire to the real house inbox via Formspree or similar. Also replace the placeholder email <span class="mono">stamford.house@agsb.co.uk</span>.</li>
+  <li><b>Live house scores:</b> the home scoreboard is illustrative — wire to a real data source if available.</li>
+  <li><b>Go live:</b> set up GitHub Pages (or other host) for a public URL.</li>
+  <li><b>Verify event data</b> with the school (the column-shift caveat in §7).</li>
+  <li><b>Optional flair ideas not yet built:</b> typewriter/scramble tagline, 3D flip captain cards, scroll-speed parallax, hero video loop.</li>
+</ul>
+</div>
+
+<h2>11. Editing cheat-sheet (common tasks)</h2>
+<table>
+<tr><th>To do this…</th><th>Change…</th></tr>
+<tr><td>Add/edit an event</td><td><code>data/events.json</code> (add an object to <span class="mono">events</span>).</td></tr>
+<tr><td>Swap the crest</td><td>Replace <code>assets/crest.png</code>.</td></tr>
+<tr><td>Resize hero crest</td><td><span class="mono">.hero-crest img</span> width in <code>css/style.css</code>.</td></tr>
+<tr><td>Change colours/fonts</td><td><span class="mono">:root</span> variables in <code>css/style.css</code>.</td></tr>
+<tr><td>Edit nav links</td><td><span class="mono">.nav-links</span> list — present in the header of every <code>.html</code> page (kept in sync manually).</td></tr>
+<tr><td>Add a page</td><td>Copy an existing page's header/footer, add to nav on all pages, include <code>js/main.js</code>.</td></tr>
+</table>
+
+<hr/>
+<p class="small">This document was generated as a portable context brief for the Stamford House website. Hand it (or its contents) to any new assistant/session to bring them fully up to speed. — June 2026.</p>
+
+</body>
+</html>
