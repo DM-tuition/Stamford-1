@@ -44,13 +44,29 @@ python3 -m http.server 8000
 - **Fonts:** Space Grotesk (display) + Inter (body).
 - Honours `prefers-reduced-motion`; everything degrades gracefully.
 
-## Before go-live — TODO
+## Going live (2 things to flip on)
 
+All the plumbing is built — just paste two links into **`js/config.js`**:
+
+1. **Live house points** — make a Google Sheet with columns `House | Points`
+   (rows: Stamford, Bradbury, Massey, Tatton). File → Share → **Publish to web → CSV**,
+   then paste that link as `scoresCsvUrl`. The home scoreboard becomes live (sorted, animated).
+2. **Working contact/sign-up form** — create a free form at **formspree.io**, paste its
+   endpoint as `formEndpoint`. Submissions then email the house for real (with a success toast).
+
+### Publish the site (GitHub Pages)
+A deploy workflow is included at `.github/workflows/deploy-pages.yml`. To switch it on:
+**GitHub repo → Settings → Pages → Build and deployment → Source: GitHub Actions.**
+Every push to `main` then auto-deploys to a public URL.
+
+## Other features now built-in
+- **"Next event" hype bar** sitewide (auto-reads the calendar; dismissible).
+- **Image perf:** crest optimised 1.6 MB → ~108 KB; images lazy-load + async-decode.
+  (Full-res crest kept at `assets/crest-full.png`.)
+
+## Remaining TODO
 - [ ] Add real photos to `assets/photos/` (Daniel, Ayaan, gallery) — placeholders auto-swap.
-- [ ] Replace the SVG crest with official artwork if higher fidelity is wanted.
-- [ ] Wire the **Get Involved** form to the house email / a form service (e.g. Formspree).
-- [ ] Confirm leadership names, event dates and "Year group/Number" cells with the school
-      (a few cells in the source PDF looked shifted; flagged rather than guessed).
-- [ ] Wire the home **scoreboard** to live house points if a data source exists.
+- [ ] Confirm leadership names, event dates and "Year group/Number" cells with the school.
+- [ ] Replace the placeholder house email (`stamford.house@agsb.co.uk`).
 
 *Last updated June 2026.*

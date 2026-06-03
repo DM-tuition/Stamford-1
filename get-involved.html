@@ -63,7 +63,7 @@
         <p class="muted" style="font-size:.8rem;margin-top:8px">Placeholder address — swap for the real house inbox.</p>
       </div>
       <div class="card glass reveal d1">
-        <form class="form2" novalidate onsubmit="window.stamfordToast &amp;&amp; window.stamfordToast('Thanks — message ready to send! Connect this form to go live.','✉️'); this.reset(); return false;">
+        <form class="form2" data-form="signup" novalidate>
           <div class="field">
             <input id="name" name="name" type="text" placeholder=" " required />
             <label for="name">Your name</label>
@@ -87,7 +87,7 @@
             <label for="message">Your message</label>
           </div>
           <div><button class="btn btn--primary" type="submit">Send to the team →</button></div>
-          <p class="muted" style="font-size:.8rem">Demo form — connect it to the house email or a service like Formspree to go live.</p>
+          <p class="muted" style="font-size:.8rem">We'll only use your message to get back to you about the house.</p>
         </form>
       </div>
     </div>
@@ -126,6 +126,6 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="js/config.js"></script>  <script src="js/main.js"></script>
 </body>
 </html>

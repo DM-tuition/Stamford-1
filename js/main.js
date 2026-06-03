@@ -4,6 +4,20 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   var canHover = window.matchMedia("(hover: hover)").matches;
 
+  /* ============================================================
+     EDITABLE CONFIG — paste your links here to "go live".
+     ------------------------------------------------------------
+     scoresCsvUrl : Google Sheet -> File -> Share -> Publish to web
+                    -> CSV. Sheet columns: House , Points.
+                    Leave "" to show the placeholder standings.
+     formEndpoint : Your Formspree endpoint, e.g.
+                    https://formspree.io/f/abcd1234
+                    Leave "" for demo mode (no real send).
+     ============================================================ */
+  var CFG = window.STAMFORD_CONFIG || {};
+  CFG.scoresCsvUrl = CFG.scoresCsvUrl || "";
+  CFG.formEndpoint = CFG.formEndpoint || "";
+
   /* ---- Preloader (injected before first paint) ---- */
   (function preloader() {
     var pl = document.createElement("div");
@@ -309,6 +323,87 @@
     if (e.target.closest(".btn--primary, .theme-toggle, [data-sparkle]")) window.stamfordSparkle(e.clientX, e.clientY, 18);
     var flag = e.target.closest(".event-card.flagship");
     if (flag) { var r = flag.getBoundingClientRect(); window.stamfordSparkle(e.clientX || r.left + r.width / 2, e.clientY || r.top + 30, 22); }
+  });
+
+  /* ---- Performance: lazy-load + async-decode images ---- */
+  document.querySelectorAll("img").forEach(function (img) {
+    img.decoding = "async";
+    if (!img.closest(".site-header, .hero, .page-hero")) img.loading = "lazy";
+  });
+
+  /* ---- "Next event" hype bar (sitewide) ---- */
+  (function hypeBar() {
+    if (sessionStorage.getItem("stamford-hype-x")) return;
+    fetch("data/events.json").then(function (r) { return r.json(); }).then(function (data) {
+      var now = new Date(new Date().toDateString());
+      var up = (data.events || []).filter(function (e) { return e.date && new Date(e.date) >= now; })
+        .sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+      if (!up.length) return;
+      var ev = up[0];
+      var days = Math.ceil((new Date(ev.date) - now) / 864e5);
+      var when = days <= 0 ? "today" : days === 1 ? "tomorrow" : "in " + days + " days";
+      var bar = document.createElement("div");
+      bar.className = "hype";
+      bar.innerHTML = '<span class="bolt">⚡</span><span><b>Next up:</b> ' + ev.title +
+        ' — <b>' + when + '</b></span><a href="events.html">See the season →</a>' +
+        '<button class="hype-close" aria-label="Dismiss">×</button>';
+      document.body.insertBefore(bar, document.body.firstChild);
+      bar.querySelector(".hype-close").addEventListener("click", function () {
+        sessionStorage.setItem("stamford-hype-x", "1"); bar.remove();
+      });
+    }).catch(function () {});
+  })();
+
+  /* ---- Live house-points leaderboard (Google Sheet CSV) ---- */
+  (function leaderboard() {
+    var board = document.getElementById("scoreboard");
+    if (!board || !CFG.scoresCsvUrl) return;
+    var colors = {
+      stamford: { dot: "#2a4bff", bar: "linear-gradient(90deg,#2a4bff,#6fd6ff)" },
+      bradbury: { dot: "#d12b2b", bar: "#d12b2b" },
+      massey: { dot: "#1f9d4d", bar: "#1f9d4d" },
+      tatton: { dot: "#f5c400", bar: "#f5c400" }
+    };
+    fetch(CFG.scoresCsvUrl).then(function (r) { return r.text(); }).then(function (csv) {
+      var rows = csv.trim().split(/\r?\n/).map(function (l) { return l.split(","); });
+      // drop header if it isn't numeric
+      if (rows.length && isNaN(parseFloat(rows[0][1]))) rows.shift();
+      var data = rows.map(function (c) { return { name: (c[0] || "").trim(), pts: parseFloat(c[1]) || 0 }; })
+        .filter(function (d) { return d.name; }).sort(function (a, b) { return b.pts - a.pts; });
+      if (!data.length) return;
+      var max = Math.max.apply(null, data.map(function (d) { return d.pts; })) || 1;
+      board.innerHTML = data.map(function (d, i) {
+        var c = colors[d.name.toLowerCase()] || { dot: "#2f8fd0", bar: "#2f8fd0" };
+        var rank = ["1st", "2nd", "3rd", "4th"][i] || (i + 1) + "th";
+        return '<div class="score-row"><div class="house"><span class="dot" style="background:' + c.dot + '"></span>' +
+          d.name + '</div><div class="score-bar"><i data-w="' + Math.round(d.pts / max * 100) +
+          '" style="background:' + c.bar + '"></i></div><div class="score-val">' + d.pts.toLocaleString() + '</div></div>';
+      }).join("");
+      var cap = board.parentNode.querySelector(".muted");
+      if (cap) cap.textContent = "Live house points · updates from the house spreadsheet.";
+      requestAnimationFrame(function () {
+        board.querySelectorAll(".score-bar > i").forEach(function (el) { el.style.width = el.getAttribute("data-w") + "%"; });
+      });
+    }).catch(function () {});
+  })();
+
+  /* ---- Real form submission (Formspree) ---- */
+  document.querySelectorAll("form[data-form]").forEach(function (f) {
+    f.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!CFG.formEndpoint) {
+        if (window.stamfordToast) window.stamfordToast("Thanks! (Demo mode — add a Formspree link to send for real.)", "✉️");
+        f.reset(); return;
+      }
+      var btn = f.querySelector('[type="submit"]'); if (btn) btn.disabled = true;
+      fetch(CFG.formEndpoint, { method: "POST", body: new FormData(f), headers: { "Accept": "application/json" } })
+        .then(function (r) {
+          if (r.ok) { if (window.stamfordToast) window.stamfordToast("Thanks — your message is on its way!", "✉️"); f.reset(); }
+          else if (window.stamfordToast) window.stamfordToast("Hmm, that didn't send. Try emailing us instead.", "⚠");
+        })
+        .catch(function () { if (window.stamfordToast) window.stamfordToast("Network error — please try again.", "⚠"); })
+        .finally(function () { if (btn) btn.disabled = false; });
+    });
   });
 
   /* ---- Page transition ---- */

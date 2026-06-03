@@ -543,6 +543,19 @@ img { max-width: 100%; display: block; }
 /* Sparkles */
 .spark { position: fixed; z-index: 9995; pointer-events: none; line-height: 1; will-change: transform, opacity; }
 
+/* Hype bar */
+.hype { position: relative; display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap;
+  padding: 9px 46px 9px 18px; background: linear-gradient(90deg, var(--royal), var(--steel)); color: #fff;
+  font-family: var(--font-display); font-weight: 600; font-size: 0.88rem; letter-spacing: .01em; }
+.hype b { font-weight: 700; }
+.hype .bolt { animation: bolt 1.8s ease-in-out infinite; }
+@keyframes bolt { 0%,100% { opacity: 1; transform: scale(1); } 50% { opacity: .55; transform: scale(1.18); } }
+.hype a { color: #fff; text-decoration: underline; text-underline-offset: 3px; font-weight: 700; }
+.hype a:hover { color: #eaf4ff; }
+.hype-close { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 26px; height: 26px;
+  border: 0; border-radius: 50%; background: rgba(255,255,255,.2); color: #fff; font-size: 1.1rem; line-height: 1; cursor: pointer; }
+.hype-close:hover { background: rgba(255,255,255,.35); }
+
 /* Reduced motion */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
