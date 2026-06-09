@@ -1,5 +1,5 @@
 /* Stamford House — service worker (offline support for the installed app) */
-var CACHE = "stamford-v1";
+var CACHE = "stamford-v2";
 var CORE = [
   "./", "index.html", "about.html", "leadership.html", "events.html",
   "gallery.html", "get-involved.html", "404.html",
