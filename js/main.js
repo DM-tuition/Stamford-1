@@ -62,6 +62,13 @@
   }
   inject();
 
+  /* ---- Service worker (installable app + offline) ---- */
+  if ("serviceWorker" in navigator && location.protocol.indexOf("http") === 0) {
+    window.addEventListener("load", function () {
+      navigator.serviceWorker.register("sw.js").catch(function () {});
+    });
+  }
+
   /* ---- Toast helper ---- */
   window.stamfordToast = function (msg, icon) {
     var box = document.getElementById("toasts"); if (!box) return;
