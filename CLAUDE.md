@@ -37,7 +37,8 @@
 
 - Stamford: ABC+ Warranty (architectscertificate.co.uk) — local Altrincham structural warranty company
 - Tatton: Independents by Sodexo (independentsbysodexo.com) — school catering
-- (Bradbury and Massey also sponsored)
+- Bradbury: innov8 (innov8.co.uk)
+- Massey: TaxAssist Accountants (taxassist.co.uk) — "The Accountancy and Tax Service for Small Business"
 
 House activities & results are shared on the school’s House Twitter page, and latest scores appear on the AGSB home page.
 
