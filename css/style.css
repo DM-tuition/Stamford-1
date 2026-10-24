@@ -320,4 +320,71 @@ img { max-width: 100%; display: block; }
   .section { padding: 48px 0; }
   .cta-band { padding: 30px 20px; }
 }
+/* ============================================================
+   FLAIR LAYER — premium, flashy-but-clean
+   ============================================================ */
+@keyframes flow { to { background-position: 200% center; } }
+@keyframes blob { to { transform: translate(40px, 30px) scale(1.12); } }
+@keyframes glowpulse { to { transform: scale(1.12); opacity: .85; } }
+@keyframes sheen { 0% { transform: translateX(-130%); } 100% { transform: translateX(130%); } }
+
+/* Subtle page glow */
+body { background: radial-gradient(1100px 460px at 50% -170px, #edf2fd, #ffffff 55%) no-repeat, #ffffff; }
+
+/* Animated gradient accents */
+.gradient-text { background: linear-gradient(120deg, #1a4fd6, #49a6ff 50%, #1a4fd6); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; animation: flow 6s linear infinite; }
+.stat .num, .season-stats .ss .n, .hub-strap .n { background: linear-gradient(120deg, #1a4fd6, #49a6ff); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; color: transparent; }
+
+/* Buttons: gradient + lift + sheen */
+.btn { position: relative; overflow: hidden; transition: transform .2s cubic-bezier(.22,1,.36,1), box-shadow .2s, background .2s, border-color .2s; }
+.btn--primary { background: linear-gradient(120deg, #1a4fd6, #3b74ff); box-shadow: 0 8px 22px rgba(26,79,214,.32); }
+.btn--primary:hover { transform: translateY(-2px); box-shadow: 0 14px 30px rgba(26,79,214,.45); }
+.btn--primary::before { content: ""; position: absolute; inset: 0; background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,.4) 50%, transparent 70%); transform: translateX(-130%); pointer-events: none; }
+.btn--primary:hover::before { animation: sheen .7s ease; }
+.btn--ghost:hover { transform: translateY(-2px); }
+
+/* Cards: deeper lift + accent on hover */
+.card, .event-card, .house-card, .person, .stat, .glass, .season-stats .ss, .cd-unit { transition: transform .28s cubic-bezier(.22,1,.36,1), box-shadow .28s, border-color .28s; }
+.card:hover, .event-card:hover, .person:hover { transform: translateY(-5px); box-shadow: 0 22px 50px rgba(16,32,80,.15); border-color: rgba(26,79,214,.35); }
+.stat:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+
+/* Reveal with gentle scale */
+.reveal { transform: translateY(22px) scale(.985); }
+.reveal.in { transform: none; }
+
+/* Drifting glow blobs in heroes */
+.hero, .page-hero, .hub-hero { position: relative; overflow: hidden; }
+.hero > .container, .page-hero > .container { position: relative; z-index: 2; }
+.page-hero::before { content: ""; position: absolute; width: 440px; height: 440px; border-radius: 50%; filter: blur(85px); background: radial-gradient(circle, rgba(90,140,255,.28), transparent 70%); top: -170px; right: -110px; pointer-events: none; animation: blob 24s ease-in-out infinite alternate; }
+.hub-hero::before { content: ""; position: absolute; width: 540px; height: 540px; border-radius: 50%; filter: blur(95px); background: radial-gradient(circle, rgba(120,165,255,.45), transparent 70%); top: -210px; right: -150px; pointer-events: none; animation: blob 22s ease-in-out infinite alternate; z-index: 1; }
+
+/* Stamford home hero -> cinematic navy */
+.hero { background: linear-gradient(135deg, #0b2e6e 0%, #143f96 55%, #0b2e6e 100%); color: #fff; padding: 74px 0 78px; border-bottom: 0; }
+.hero h1 { color: #fff; }
+.hero .eyebrow { color: #9fc0ff; }
+.hero p, .hero .lead { color: #c9d6f0; }
+.hero-motto { color: #dde8ff; border-left-color: var(--gold); }
+.hero .gradient-text { background: linear-gradient(120deg, #a9e3ff, #d6e6ff 50%, #a9e3ff); background-size: 200% auto; -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+.hero .btn--primary { background: #fff; color: var(--navy); box-shadow: 0 10px 26px rgba(0,0,0,.28); }
+.hero .btn--primary:hover { background: #eaf1ff; }
+.hero .btn--ghost { background: rgba(255,255,255,.06); color: #fff; border-color: rgba(255,255,255,.5); }
+.hero .btn--ghost:hover { border-color: #fff; background: rgba(255,255,255,.14); }
+.hero::before { content: ""; position: absolute; width: 540px; height: 540px; border-radius: 50%; filter: blur(95px); background: radial-gradient(circle, rgba(70,120,255,.5), transparent 70%); top: -210px; right: -130px; pointer-events: none; animation: blob 20s ease-in-out infinite alternate; }
+.hero::after { content: ""; position: absolute; width: 440px; height: 440px; border-radius: 50%; filter: blur(95px); background: radial-gradient(circle, rgba(47,143,208,.4), transparent 70%); bottom: -220px; left: -130px; pointer-events: none; animation: blob 26s ease-in-out infinite alternate-reverse; }
+.hero-crest { position: relative; }
+.hero-crest::before { content: ""; position: absolute; inset: -12%; border-radius: 50%; background: radial-gradient(circle, rgba(95,145,255,.55), transparent 65%); filter: blur(28px); z-index: -1; animation: glowpulse 5s ease-in-out infinite alternate; }
+.hero-crest img { filter: drop-shadow(0 22px 44px rgba(0,0,0,.5)); }
+
+/* Header: soft shadow for lift */
+.site-header { box-shadow: 0 1px 0 rgba(16,32,80,.04); }
+
+/* Flag strip: subtle gradient sheen */
+.flag-strip { height: 6px; }
+
+/* House cards: gradient top accent glow on hover */
+.house-card:hover { transform: translateY(-5px); box-shadow: 0 22px 50px rgba(16,32,80,.16); }
+
+/* Section tint divider */
+.section--alt { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: linear-gradient(180deg, #f6f9fe, #eef3fb); }
+
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation: none !important; transition: none !important; } .reveal { opacity: 1; transform: none; } }
