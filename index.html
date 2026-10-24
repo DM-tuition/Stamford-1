@@ -7,49 +7,34 @@
   <meta name="description" content="The Altrincham Grammar School for Boys house system — four houses, one community. Events, points and how to get involved. A student-led project." />
   <link rel="icon" href="assets/crest.png" type="image/png" />
   <link rel="manifest" href="manifest.webmanifest" />
-  <meta name="theme-color" content="#0b2e6e" />
+  <meta name="theme-color" content="#11573f" />
   <link rel="apple-touch-icon" href="assets/icons/icon-180.png" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-title" content="AGSB Houses" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    /* Hub-specific (house-neutral) */
-    .hub-hero { background: linear-gradient(160deg, #0b2e6e 0%, #113a86 55%, #0b2e6e 100%); color: #fff; padding: 64px 0 58px; position: relative; overflow: hidden; }
-    .hub-hero::after { content: ""; position: absolute; inset: 0; background: repeating-linear-gradient(115deg, rgba(255,255,255,.04) 0 2px, transparent 2px 24px); pointer-events: none; }
-    .hub-hero .container { position: relative; z-index: 2; }
-    .hub-hero h1 { color: #fff; font-size: clamp(2.3rem, 5.2vw, 3.6rem); max-width: 16ch; }
-    .hub-hero p { color: #c9d6f0; font-size: 1.15rem; max-width: 56ch; margin: 16px 0 26px; }
-    .hub-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-display); font-weight: 600; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; color: #9fc0ff; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; padding: 6px 14px; margin-bottom: 18px; }
-    .hub-hero .btn--primary { background: #fff; color: var(--navy); }
-    .hub-hero .btn--primary:hover { background: #eaf1ff; }
-    .hub-hero .btn--ghost { background: transparent; color: #fff; border-color: rgba(255,255,255,.5); }
-    .hub-hero .btn--ghost:hover { border-color: #fff; background: rgba(255,255,255,.08); }
-    .crest-row { display: flex; gap: 14px; margin-top: 30px; flex-wrap: wrap; }
-    .mini-shield { width: 58px; height: 68px; display: block; }
-    .hub-strap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--bg-alt); }
-    .hub-strap div { text-align: center; padding: 22px 12px; border-right: 1px solid var(--line); }
-    .hub-strap div:last-child { border-right: 0; }
-    .hub-strap .n { font-family: var(--font-display); font-weight: 700; font-size: 1.7rem; color: var(--navy); }
-    .hub-strap .l { font-size: .82rem; color: var(--muted); margin-top: 2px; }
-    /* House cards */
-    .house-card { border: 1px solid var(--line); border-top: 5px solid var(--hc, #888); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); padding: 24px; display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s; }
+    /* Hub-only extras (neutral AGSB look) */
+    .quick-strip { display: grid; grid-template-columns: repeat(4, 1fr); background: var(--bg-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    .quick-strip div { text-align: center; padding: 24px 12px; border-right: 1px solid var(--line); }
+    .quick-strip div:last-child { border-right: 0; }
+    .quick-strip .n { font-family: var(--font-display); font-weight: 800; font-size: 1.9rem; color: var(--accent); }
+    .quick-strip .l { font-size: .82rem; color: var(--muted); margin-top: 2px; }
+    .house-card { border: 1px solid var(--line); border-top: 4px solid var(--hc, #888); border-radius: var(--radius); background: #fff; padding: 24px; display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s, border-color .2s; }
     .house-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
     .house-card .hc-top { display: flex; align-items: center; gap: 14px; }
     .house-card .hc-shield { width: 52px; height: 62px; flex: none; }
     .house-card h3 { font-size: 1.3rem; margin-bottom: 2px; }
-    .house-card .hc-colour { font-size: .78rem; color: var(--muted); font-weight: 600; letter-spacing: .04em; text-transform: uppercase; }
+    .house-card .hc-colour { font-size: .76rem; color: var(--muted); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
     .house-card .hc-meta { margin-top: 16px; font-size: .9rem; color: var(--muted); }
     .house-card .hc-meta b { color: var(--ink); font-weight: 600; }
     .house-card .hc-foot { margin-top: auto; padding-top: 18px; }
     .hc-live { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #1f9d4d; }
     .hc-soon { display: inline-block; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
-    .btn--disabled { background: var(--bg-alt); color: var(--muted); cursor: default; pointer-events: none; }
-    @media (max-width: 900px) { .hub-strap { grid-template-columns: repeat(2, 1fr); } .hub-strap div:nth-child(2) { border-right: 0; } }
-    @media (max-width: 680px) { .hub-strap { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 680px) { .quick-strip { grid-template-columns: 1fr 1fr; } .quick-strip div:nth-child(2) { border-right: 0; } }
   </style>
 </head>
 <body>
@@ -59,7 +44,7 @@
     <div class="container nav">
       <a class="brand" href="index.html" aria-label="AGSB Houses home">
         <svg class="mini-shield" style="width:38px;height:44px" viewBox="0 0 60 70" aria-hidden="true">
-          <path d="M4 4 H56 V40 C56 56 44 64 30 68 C16 64 4 56 4 40 Z" fill="#fff" stroke="#0b2e6e" stroke-width="3"/>
+          <path d="M4 4 H56 V40 C56 56 44 64 30 68 C16 64 4 56 4 40 Z" fill="#fff" stroke="#11573f" stroke-width="3"/>
           <clipPath id="bhs"><path d="M4 4 H56 V40 C56 56 44 64 30 68 C16 64 4 56 4 40 Z"/></clipPath>
           <g clip-path="url(#bhs)"><rect x="4" y="4" width="26" height="33" fill="#d12b2b"/><rect x="30" y="4" width="26" height="33" fill="#1f9d4d"/><rect x="4" y="37" width="26" height="33" fill="#1a4fd6"/><rect x="30" y="37" width="26" height="33" fill="#f5b800"/></g>
         </svg>
@@ -76,35 +61,32 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hub-hero">
+  <!-- Masthead (white, school-style) -->
+  <section class="masthead">
     <div class="container">
-      <span class="hub-badge">Student-led · Unofficial</span>
-      <h1>Four houses. One school. <br />Every student counts.</h1>
-      <p>The Altrincham Grammar School for Boys house system — Bradbury, Massey, Stamford and Tatton — competing across the year for points, pride and the house cup.</p>
-      <div class="hero-cta">
+      <span class="eyebrow reveal">Student-led · Unofficial</span>
+      <h1 class="reveal d1">Four houses. One school.<br />Every student counts.</h1>
+      <div class="rule-gold reveal d1"></div>
+      <p class="reveal d2">The Altrincham Grammar School for Boys house system — Bradbury, Massey, Stamford and Tatton — competing across the year for points, pride and the house cup.</p>
+      <div class="hero-cta reveal d2">
         <a class="btn btn--primary" href="#houses">Meet the houses →</a>
         <a class="btn btn--ghost" href="events.html">The events calendar</a>
       </div>
-      <div class="crest-row" aria-hidden="true">
-        <!-- Bradbury -->
-        <svg class="mini-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#d12b2b" stroke="#fff" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="22">B</text></svg>
-        <!-- Massey -->
-        <svg class="mini-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#1f9d4d" stroke="#fff" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="22">M</text></svg>
-        <!-- Stamford (real crest) -->
-        <img class="mini-shield" src="assets/crest.png" alt="" style="height:68px;width:auto" onerror="this.onerror=null;this.src='assets/crest-photo.jpeg'" />
-        <!-- Tatton -->
-        <svg class="mini-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#f5b800" stroke="#fff" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#1a1a1a" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="22">T</text></svg>
+      <div class="crest-row reveal d3" aria-hidden="true">
+        <svg class="mini-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#d12b2b" stroke="#b81f1f" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Libre Franklin, sans-serif" font-weight="800" font-size="22">B</text></svg>
+        <svg class="mini-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#1f9d4d" stroke="#17813d" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Libre Franklin, sans-serif" font-weight="800" font-size="22">M</text></svg>
+        <img class="mini-shield" src="assets/crest.png" alt="" style="height:70px;width:auto" onerror="this.onerror=null;this.src='assets/crest-photo.jpeg'" />
+        <svg class="mini-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#f5b800" stroke="#c99700" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#1a1a1a" font-family="Libre Franklin, sans-serif" font-weight="800" font-size="22">T</text></svg>
       </div>
     </div>
   </section>
 
   <!-- Quick facts strip -->
-  <div class="hub-strap">
-    <div><div class="n">4</div><div class="l">Houses</div></div>
-    <div><div class="n">2019</div><div class="l">System reintroduced</div></div>
-    <div><div class="n">70+</div><div class="l">Events a year</div></div>
-    <div><div class="n">1</div><div class="l">School community</div></div>
+  <div class="quick-strip">
+    <div><div class="n" data-count="4">4</div><div class="l">Houses</div></div>
+    <div><div class="n" data-count="2019" data-plain>2019</div><div class="l">System reintroduced</div></div>
+    <div><div class="n" data-count="70" data-suffix="+">70+</div><div class="l">Events a year</div></div>
+    <div><div class="n" data-count="1">1</div><div class="l">School community</div></div>
   </div>
 
   <!-- What is the house system -->
@@ -117,7 +99,7 @@
         <p class="muted mt">Each house is run by a staff House Manager. In every year group, elected House Leaders and Deputies organise events, and a Year 13 House Captain and Deputy lead the house and coordinate assemblies. It's designed to build community across year groups and give every student a place to belong — and a chance to lead.</p>
       </div>
       <div class="reveal d1">
-        <div class="card glass">
+        <div class="card">
           <h3 style="margin-bottom:12px">Why it matters</h3>
           <ul class="checklist">
             <li>Recognises and celebrates success and effort</li>
@@ -142,25 +124,22 @@
         <p class="lead">Each house has its own crest, colours and leadership. Stamford's site is live — the others are on the way.</p>
       </div>
       <div class="grid grid-4 mt">
-        <!-- Bradbury -->
         <div class="house-card reveal" style="--hc:#d12b2b">
           <div class="hc-top">
-            <svg class="hc-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#d12b2b" stroke="#b81f1f" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-weight="700" font-size="22">B</text></svg>
+            <svg class="hc-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#d12b2b" stroke="#b81f1f" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Libre Franklin" font-weight="800" font-size="22">B</text></svg>
             <div><h3>Bradbury</h3><div class="hc-colour">Red &amp; White</div></div>
           </div>
           <div class="hc-meta"><b>Captain:</b> Aadith Menon<br /><b>Sponsor:</b> innov8</div>
           <div class="hc-foot"><span class="hc-soon">Site coming soon</span></div>
         </div>
-        <!-- Massey -->
         <div class="house-card reveal d1" style="--hc:#1f9d4d">
           <div class="hc-top">
-            <svg class="hc-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#1f9d4d" stroke="#17813d" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Space Grotesk" font-weight="700" font-size="22">M</text></svg>
+            <svg class="hc-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#1f9d4d" stroke="#17813d" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Libre Franklin" font-weight="800" font-size="22">M</text></svg>
             <div><h3>Massey</h3><div class="hc-colour">Green &amp; White</div></div>
           </div>
           <div class="hc-meta"><b>Captain:</b> Soorian Jegatheeswaran<br /><b>Sponsor:</b> TaxAssist</div>
           <div class="hc-foot"><span class="hc-soon">Site coming soon</span></div>
         </div>
-        <!-- Stamford (live) -->
         <div class="house-card reveal d2" style="--hc:#1a4fd6">
           <div class="hc-top">
             <img class="hc-shield" src="assets/crest.png" alt="Stamford crest" style="height:62px;width:auto" onerror="this.onerror=null;this.src='assets/crest-photo.jpeg'" />
@@ -169,10 +148,9 @@
           <div class="hc-meta"><b>Captain:</b> Daniel Stevenson<br /><b>Sponsor:</b> ABC+ Warranty</div>
           <div class="hc-foot"><span class="hc-live">● Live now</span><div class="mt"><a class="btn btn--primary" href="stamford.html">Visit Stamford →</a></div></div>
         </div>
-        <!-- Tatton -->
         <div class="house-card reveal d3" style="--hc:#f5b800">
           <div class="hc-top">
-            <svg class="hc-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#f5b800" stroke="#c99700" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#1a1a1a" font-family="Space Grotesk" font-weight="700" font-size="22">T</text></svg>
+            <svg class="hc-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#f5b800" stroke="#c99700" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#1a1a1a" font-family="Libre Franklin" font-weight="800" font-size="22">T</text></svg>
             <div><h3>Tatton</h3><div class="hc-colour">Yellow &amp; Black</div></div>
           </div>
           <div class="hc-meta"><b>Captain:</b> Edward Aloul<br /><b>Sponsor:</b> Independents by Sodexo</div>
@@ -191,7 +169,7 @@
         <p class="lead">Students earn points for their house across more than 70 competitions a year — from the House Shout to Sports Day, debating, chess and the arts. The standings below are illustrative until the live table is connected.</p>
         <p class="muted mt">Latest official scores are shared on the school's House Twitter page and the AGSB home page.</p>
       </div>
-      <div class="card glass reveal d1">
+      <div class="card reveal d1">
         <div class="scoreboard" id="scoreboard">
           <div class="score-row"><div class="house"><span class="dot" style="background:#d12b2b"></span>Bradbury</div><div class="score-bar"><i data-w="78" style="background:#d12b2b"></i></div><div class="score-val">—</div></div>
           <div class="score-row"><div class="house"><span class="dot" style="background:#1f9d4d"></span>Massey</div><div class="score-bar"><i data-w="71" style="background:#1f9d4d"></i></div><div class="score-val">—</div></div>
@@ -214,8 +192,8 @@
           <div class="mt"><a class="btn btn--primary" href="events.html">Open the calendar →</a></div>
         </div>
         <div class="grid reveal d1" style="gap:14px">
-          <div class="card glass"><span class="tag">Flagship</span><h3>House Shout</h3><p>A mass performing-arts competition — the highlight of the house calendar.</p></div>
-          <div class="card glass"><span class="tag">June / July</span><h3>Sports Day</h3><p>Field and track, plus the Summer Sports Festival across year groups.</p></div>
+          <div class="card"><span class="tag">Flagship</span><h3>House Shout</h3><p>A mass performing-arts competition — the highlight of the house calendar.</p></div>
+          <div class="card"><span class="tag">June / July</span><h3>Sports Day</h3><p>Field and track, plus the Summer Sports Festival across year groups.</p></div>
         </div>
       </div>
     </div>
