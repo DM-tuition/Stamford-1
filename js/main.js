@@ -130,62 +130,43 @@
   function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
   function yearLabel(y) { if (!y) return ""; if (/^all/i.test(y)) return "All years"; return /^\d/.test(y) ? "Year " + y : y; }
 
-  /* ---- Shared date loader: official AGSB calendar + house diary + Parliament ---- */
-  var TAG = { "House": "var(--accent)", "Term dates": "#6b7280", "Parliament": "#b7791f" };
-  var dates = null;
+  /* ---- House diary: dated house events from data/events.json (house events only) ---- */
+  var CAT = { Sport: "#1a7fb0", Academic: "#6b45d6", Arts: "#c43b86", Performance: "#c88a00", Social: "#1f9d4d" };
+  var diary = null;
   function iso(d) { return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2); }
-  function loadDates() {
-    if (dates) return dates;
-    function get(u) { return fetch(u).then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }); }
-    dates = Promise.all([get("data/calendar.json"), get("data/events.json"), get("data/parliament.json")]).then(function (res) {
-      var items = [];
-      ((res[0] && res[0].events) || []).forEach(function (e) {
-        items.push({ id: "ev-" + e.id, title: e.title, category: e.category, start: e.start, end: e.end, time: e.time, location: e.location, yearGroup: e.yearGroup, url: e.url });
-      });
-      ((res[1] && res[1].events) || []).forEach(function (e, i) {
-        if (e.date) items.push({ id: "hd-" + i, title: e.title, category: "House", start: e.date, end: "", time: "", location: "", yearGroup: yearLabel(e.yearGroup), staff: e.staff, diary: true });
-      });
-      ((res[2] && res[2].departments) || []).forEach(function (d, i) {
-        if (d.next) items.push({ id: "pm-" + i, title: "Parliament: " + d.name, category: "Parliament", start: d.next, end: "", time: d.time || "", location: d.room || "", yearGroup: "", href: "parliament.html#meetings" });
-      });
-      items.sort(function (a, b) { return (a.start + a.time).localeCompare(b.start + b.time); });
-      return items;
+  function loadDiary() {
+    if (!diary) diary = fetch("data/events.json").then(function (r) { return r.ok ? r.json() : null; }).catch(function () { return null; }).then(function (data) {
+      return ((data && data.events) || []).filter(function (e) { return e.date; }).map(function (e) {
+        return { title: e.title, category: e.category || "", start: e.date, yearGroup: yearLabel(e.yearGroup), staff: e.staff };
+      }).sort(function (a, b) { return a.start.localeCompare(b.start); });
     });
-    return dates;
+    return diary;
   }
-  function isUpcoming(e) { return (e.end || e.start) >= iso(new Date()); }
+  function isUpcoming(e) { return e.start >= iso(new Date()); }
   function fmt(d, opts) { return new Date(d + "T12:00:00").toLocaleDateString("en-GB", opts); }
-  function when(e) {
-    var day = { day: "2-digit", month: "short" }, full = { day: "2-digit", month: "short", year: "numeric" };
-    var d = e.end ? fmt(e.start, day) + " – " + fmt(e.end, full) : fmt(e.start, full);
-    return d + ", " + (e.time ? e.time.replace("–", " – ") : "All day");
-  }
   function soon(e) {
-    var today = iso(new Date()), t = new Date(); t.setDate(t.getDate() + 1);
-    if (e.start <= today && (e.end || e.start) >= today) return "Today";
-    if (e.start === iso(t)) return "Tomorrow";
-    return "";
+    var t = new Date(); t.setDate(t.getDate() + 1);
+    return e.start === iso(new Date()) ? "Today" : e.start === iso(t) ? "Tomorrow" : "";
   }
 
   /* ---- Upcoming events scroller: <div data-scroller="12"> ---- */
   document.querySelectorAll("[data-scroller]").forEach(function (el) {
     var max = parseInt(el.getAttribute("data-scroller"), 10) || 12;
-    loadDates().then(function (all) {
+    loadDiary().then(function (all) {
       var up = all.filter(isUpcoming);
-      if (!up.length) { el.innerHTML = '<p class="empty-note">No upcoming events yet. New dates appear here as soon as they\'re published.</p>'; return; }
-      var cats = ["All"].concat(Object.keys(TAG).filter(function (c) { return up.some(function (e) { return e.category === c; }); }));
+      if (!up.length) { el.innerHTML = '<p class="empty-note">No upcoming house events in the diary yet. <a href="events.html">See the full house diary</a>.</p>'; return; }
+      var cats = ["All"].concat(Object.keys(CAT).filter(function (c) { return up.some(function (e) { return e.category === c; }); }));
       el.innerHTML = '<div class="sc-bar"><label class="sc-filter">Filter by <select>' + cats.map(function (c) { return "<option>" + c + "</option>"; }).join("") + "</select></label>" +
         '<div class="sc-arrows"><button class="sc-btn" data-dir="-1" aria-label="Previous events">←</button><button class="sc-btn" data-dir="1" aria-label="Next events">→</button></div></div>' +
-        '<div class="sc-track" tabindex="0" aria-label="Upcoming events"></div>';
+        '<div class="sc-track" tabindex="0" aria-label="Upcoming house events"></div>';
       var track = el.querySelector(".sc-track"), sel = el.querySelector("select");
       function draw() {
-        var list = up.filter(function (e) { return sel.value === "All" || e.category === sel.value; }).slice(0, max);
-        track.innerHTML = list.map(function (e) {
-          var s = soon(e), href = e.href || "events.html#" + e.id;
-          return '<a class="sc-card" href="' + href + '" style="--cc:' + TAG[e.category] + '">' +
-            '<div class="sc-when">' + esc(when(e)) + (s ? ' <span class="sc-soon">' + s + "</span>" : "") + "</div>" +
+        track.innerHTML = up.filter(function (e) { return sel.value === "All" || e.category === sel.value; }).slice(0, max).map(function (e) {
+          var s = soon(e);
+          return '<a class="sc-card" href="events.html" style="--cc:' + (CAT[e.category] || "var(--accent)") + '">' +
+            '<div class="sc-when">' + esc(fmt(e.start, { weekday: "short", day: "2-digit", month: "short", year: "numeric" })) + (s ? ' <span class="sc-soon">' + s + "</span>" : "") + "</div>" +
             '<div class="sc-title">' + esc(e.title) + "</div>" +
-            '<div class="sc-meta">' + [e.location, e.yearGroup].filter(Boolean).map(esc).join(" · ") + "</div>" +
+            '<div class="sc-meta">' + [e.yearGroup, e.staff].filter(Boolean).map(esc).join(" · ") + "</div>" +
             '<div class="sc-tag">' + esc(e.category) + "</div></a>";
         }).join("");
         track.scrollLeft = 0;
@@ -201,67 +182,18 @@
     });
   });
 
-  /* ---- Full season list (events page): <div data-season-list> ---- */
-  document.querySelectorAll("[data-season-list]").forEach(function (el) {
-    loadDates().then(function (all) {
-      var items = all.filter(function (e) { return !e.diary || isUpcoming(e); });
-      var state = { cat: "All", past: false };
-      var target = location.hash.slice(1);
-      if (target && items.some(function (e) { return e.id === target && !isUpcoming(e); })) state.past = true;
-      var cats = ["All"].concat(Object.keys(TAG).filter(function (c) { return items.some(function (e) { return e.category === c; }); }));
-      el.innerHTML = '<div class="filters"><div class="filter-group sl-cats">' + cats.map(function (c) { return '<button class="chip' + (c === "All" ? " active" : "") + '" data-v="' + c + '">' + c + "</button>"; }).join("") + "</div>" +
-        '<label class="sl-past"><input type="checkbox"' + (state.past ? " checked" : "") + "> Show past events</label></div><div class=\"sl-body\"></div>";
-      var body = el.querySelector(".sl-body");
-      function draw() {
-        var list = items.filter(function (e) { return (state.cat === "All" || e.category === state.cat) && (state.past || isUpcoming(e)); });
-        if (!list.length) { body.innerHTML = '<p class="empty-note">Nothing to show for that filter.</p>'; return; }
-        var groups = [], map = {};
-        list.forEach(function (e) { var m = fmt(e.start, { month: "long", year: "numeric" }); if (!map[m]) { map[m] = []; groups.push(m); } map[m].push(e); });
-        body.innerHTML = groups.map(function (m) {
-          return '<h3 class="month-head">' + m + '</h3><ul class="season-list">' + map[m].map(function (e) {
-            var s = soon(e);
-            return '<li id="' + e.id + '" class="' + (isUpcoming(e) ? "" : "past") + '" style="--cc:' + TAG[e.category] + '">' +
-              '<div class="sl-date"><b>' + fmt(e.start, { day: "numeric" }) + "</b><span>" + fmt(e.start, { weekday: "short" }) + "</span></div>" +
-              '<div class="sl-main"><div class="sl-title">' + esc(e.title) + (s ? ' <span class="sc-soon">' + s + "</span>" : "") + "</div>" +
-              '<div class="up-meta">' + [e.end ? "Until " + fmt(e.end, { weekday: "short", day: "numeric", month: "short" }) : "", e.time ? e.time.replace("–", " – ") : "All day", e.location, e.yearGroup, e.staff].filter(Boolean).map(esc).join(" · ") + "</div></div>" +
-              '<div class="sl-side"><span class="sc-tag">' + esc(e.category) + "</span>" + (e.url ? '<a href="' + e.url + '" target="_blank" rel="noopener">Official ↗</a>' : "") + "</div></li>";
-          }).join("") + "</ul>";
-        }).join("");
-        if (target) { var t = document.getElementById(target); if (t) { t.classList.add("hl"); t.scrollIntoView({ block: "center" }); } target = ""; }
-      }
-      el.querySelector(".sl-cats").addEventListener("click", function (ev) {
-        var b = ev.target.closest(".chip"); if (!b) return;
-        state.cat = b.getAttribute("data-v");
-        el.querySelectorAll(".sl-cats .chip").forEach(function (c) { c.classList.toggle("active", c === b); });
-        draw();
-      });
-      var pastBox = el.querySelector(".sl-past input");
-      pastBox.addEventListener("change", function (ev) { state.past = ev.target.checked; draw(); });
-      window.addEventListener("hashchange", function () {
-        target = location.hash.slice(1);
-        var hit = items.filter(function (e) { return e.id === target; })[0];
-        if (!hit) return;
-        if (!isUpcoming(hit)) { state.past = pastBox.checked = true; }
-        if (state.cat !== "All" && hit.category !== state.cat) { state.cat = "All"; el.querySelectorAll(".sl-cats .chip").forEach(function (c) { c.classList.toggle("active", c.getAttribute("data-v") === "All"); }); }
-        el.querySelectorAll(".season-list li.hl").forEach(function (li) { li.classList.remove("hl"); });
-        draw();
-      });
-      draw();
-    });
-  });
-
-  /* ---- "Next up" bar (sitewide) ---- */
+  /* ---- "Next up" bar (sitewide): the next house event, if there is one ---- */
   (function hypeBar() {
     try { if (sessionStorage.getItem("stamford-hype-x")) return; } catch (e) {}
-    loadDates().then(function (all) {
-      var ev = all.filter(function (e) { return isUpcoming(e) && e.category !== "Term dates"; })[0];
+    loadDiary().then(function (all) {
+      var ev = all.filter(isUpcoming)[0];
       if (!ev) return;
       var days = Math.round((new Date(ev.start + "T12:00:00") - new Date(iso(new Date()) + "T12:00:00")) / 864e5);
       var w = days <= 0 ? "today" : days === 1 ? "tomorrow" : "in " + days + " days";
       var bar = document.createElement("div");
       bar.className = "hype";
       bar.innerHTML = '<span class="bolt">●</span><span><b>Next up:</b> ' + esc(ev.title) + " — <b>" + w + "</b></span>" +
-        '<a href="events.html#' + ev.id + '">Details →</a><button class="hype-close" aria-label="Dismiss">×</button>';
+        '<a href="events.html">See all events →</a><button class="hype-close" aria-label="Dismiss">×</button>';
       document.body.insertBefore(bar, document.body.firstChild);
       bar.querySelector(".hype-close").addEventListener("click", function () { try { sessionStorage.setItem("stamford-hype-x", "1"); } catch (e) {} bar.remove(); });
     });

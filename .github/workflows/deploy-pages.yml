@@ -3,8 +3,6 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  schedule:
-    - cron: "17 5 * * *"   # daily: refresh dates from the official AGSB calendar
   workflow_dispatch:
 
 permissions:
@@ -24,10 +22,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Refresh calendar from agsb.co.uk
-        # Keeps the committed data/calendar.json if the school site is unreachable.
-        continue-on-error: true
-        run: python3 scripts/build_calendar.py --fetch data/calendar.json
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
