@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Parliament — AGSB</title>
+  <meta name="description" content="The AGSB Student Parliament — raise a problem, suggest an improvement, and see meeting dates, rooms and departments. Every student has a voice." />
+  <link rel="icon" href="assets/crest.png" type="image/png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#11573f" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="AGSB Houses" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Parliament-only extras */
+    .dept-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .dept { border: 1px solid var(--line); border-top: 4px solid var(--accent); border-radius: var(--radius); background: #fff; padding: 22px; transition: box-shadow .2s, transform .2s; }
+    .dept:hover { box-shadow: var(--shadow-lg); transform: translateY(-2px); }
+    .dept .d-ic { font-size: 1.6rem; }
+    .dept h3 { font-size: 1.12rem; margin: 8px 0 6px; }
+    .dept p { color: var(--muted); font-size: .92rem; }
+    .dept .d-meta { margin-top: 12px; font-size: .84rem; color: var(--ink); border-top: 1px solid var(--line); padding-top: 10px; }
+    .dept .d-meta span { display: block; margin-bottom: 3px; }
+    .dept .d-meta b { color: var(--accent); }
+    .sched { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .sched th, .sched td { text-align: left; padding: 13px 16px; border-bottom: 1px solid var(--line); font-size: .92rem; }
+    .sched th { background: var(--bg-alt); font-family: var(--font-display); font-weight: 700; color: var(--accent-ink); font-size: .78rem; letter-spacing: .05em; text-transform: uppercase; }
+    .sched tr:last-child td { border-bottom: 0; }
+    .sched td b { color: var(--ink); font-weight: 600; }
+    .pill-tbc { display: inline-block; font-size: .72rem; font-weight: 700; color: var(--muted); background: var(--bg-alt); border: 1px solid var(--line); padding: 2px 8px; border-radius: var(--radius); }
+    .note-box { border: 1px solid var(--line); border-left: 4px solid var(--gold); background: var(--bg-alt); border-radius: var(--radius); padding: 18px 20px; }
+    .note-box h4 { color: var(--accent-ink); margin-bottom: 6px; }
+    .note-box p { color: var(--muted); font-size: .92rem; }
+    @media (max-width: 900px) { .dept-grid { grid-template-columns: repeat(2, 1fr); } .sched thead { display: none; } .sched, .sched tbody, .sched tr, .sched td { display: block; width: 100%; } .sched tr { border-bottom: 2px solid var(--line); padding: 6px 0; } .sched td { border: 0; padding: 5px 16px; } .sched td::before { content: attr(data-l) ": "; font-weight: 700; color: var(--accent); } }
+    @media (max-width: 680px) { .dept-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="flag-strip"><i class="b"></i><i class="m"></i><i class="s"></i><i class="t"></i></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="AGSB Houses home">
+        <svg class="mini-shield" style="width:38px;height:44px" viewBox="0 0 60 70" aria-hidden="true">
+          <path d="M4 4 H56 V40 C56 56 44 64 30 68 C16 64 4 56 4 40 Z" fill="#fff" stroke="#11573f" stroke-width="3"/>
+          <clipPath id="bhs"><path d="M4 4 H56 V40 C56 56 44 64 30 68 C16 64 4 56 4 40 Z"/></clipPath>
+          <g clip-path="url(#bhs)"><rect x="4" y="4" width="26" height="33" fill="#d12b2b"/><rect x="30" y="4" width="26" height="33" fill="#1f9d4d"/><rect x="4" y="37" width="26" height="33" fill="#1a4fd6"/><rect x="30" y="37" width="26" height="33" fill="#f5b800"/></g>
+        </svg>
+        <span class="brand-text"><small>ALTRINCHAM GRAMMAR SCHOOL FOR BOYS</small><span>AGSB HOUSES</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="parliament.html" class="active">Parliament</a></li>
+        <li><a href="stamford.html">Stamford</a></li>
+      </ul>
+      <div class="nav-tools"><button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button></div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> → Student Parliament</div>
+      <h1>Student Parliament</h1>
+      <p>Your voice in how AGSB is run. Raise a problem, suggest an improvement, or come to a meeting — every student is welcome.</p>
+    </div>
+  </section>
+
+  <!-- What is it -->
+  <section class="section">
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">What it is</span>
+        <h2 class="section-title">How Student Parliament works</h2>
+        <p class="lead">Student Parliament is how students help shape the school. It's organised into departments — each one focused on a different part of school life — and led by the senior prefect team alongside staff.</p>
+        <p class="muted mt">Each department meets regularly to discuss issues students have raised, agree on improvements, and take them to staff. Meetings are open — any student can come along to the department they care about, not just elected members.</p>
+        <p class="muted mt" style="font-size:.84rem"><em>This explainer is a first draft — we'll correct the detail once the Parliament info is confirmed.</em></p>
+      </div>
+      <div class="reveal d1">
+        <div class="note-box">
+          <h4>Two things you can do here</h4>
+          <p style="margin-bottom:12px"><b style="color:var(--accent-ink)">1 · Submit.</b> Send a problem or a suggestion to the right department through the <a href="#submit">Online Student Parliament</a> form below.</p>
+          <p><b style="color:var(--accent-ink)">2 · Show up.</b> Check the <a href="#meetings">meeting schedule</a> and come to a session — rooms and dates are listed for every department.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Online Student Parliament (submission) -->
+  <section class="section section--alt" id="submit">
+    <div class="container split">
+      <div class="reveal">
+        <span class="eyebrow">Online Student Parliament</span>
+        <h2 class="section-title">Raise it. Suggest it.</h2>
+        <p class="lead">Spotted a problem around school, or got an idea to make AGSB better? Send it straight to the right Parliament department. Real suggestions, from real students, taken to the people who can act on them.</p>
+        <ul class="checklist">
+          <li>Pick the department it relates to — or choose school-wide.</li>
+          <li>Flag it as a problem to fix or an improvement to make.</li>
+          <li>The Parliament team reviews every submission.</li>
+        </ul>
+        <p class="muted mt" style="font-size:.84rem">Leave an email if you'd like an update — otherwise it goes in anonymously for now.</p>
+      </div>
+      <div class="card reveal d1">
+        <form class="form2" data-form="parliament" novalidate>
+          <input type="hidden" name="_subject" value="Online Student Parliament submission" />
+          <div class="field">
+            <input id="p-name" name="name" type="text" placeholder=" " required />
+            <label for="p-name">Your name</label>
+          </div>
+          <div class="field-row">
+            <div class="field field--select">
+              <select id="p-year" name="year">
+                <option>Year 7</option><option>Year 8</option><option>Year 9</option><option>Year 10</option><option>Year 11</option><option>Year 12</option><option>Year 13</option><option>Staff</option>
+              </select>
+              <label for="p-year">Year group</label>
+            </div>
+            <div class="field field--select">
+              <select id="p-type" name="type">
+                <option>A problem to raise</option><option>A suggestion to improve</option>
+              </select>
+              <label for="p-type">Type</label>
+            </div>
+          </div>
+          <div class="field field--select">
+            <select id="p-dept" name="department">
+              <option>Environment</option>
+              <option>Facilities</option>
+              <option>Catering (Sodexo)</option>
+              <option>Student Enrichment</option>
+              <option>Academic Support</option>
+              <option>General / School-wide</option>
+            </select>
+            <label for="p-dept">Which department?</label>
+          </div>
+          <div class="field">
+            <textarea id="p-message" name="message" placeholder=" " required></textarea>
+            <label for="p-message">What's the problem or idea?</label>
+          </div>
+          <div class="field">
+            <input id="p-email" name="email" type="email" placeholder=" " />
+            <label for="p-email">Email (optional — for an update)</label>
+          </div>
+          <div><button class="btn btn--primary" type="submit">Submit to Parliament →</button></div>
+          <p class="muted" style="font-size:.8rem">Submissions go to the Parliament team. Please keep it constructive and respectful.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Departments -->
+  <section class="section" id="departments">
+    <div class="container">
+      <div class="reveal" style="max-width:640px">
+        <span class="eyebrow">The five departments</span>
+        <h2 class="section-title">Where the work happens</h2>
+        <p class="lead">Parliament is split into five departments, each meeting on a fortnightly cycle. Days and rooms below are placeholders until the real timetable is confirmed.</p>
+      </div>
+      <div class="dept-grid mt">
+        <div class="dept reveal">
+          <div class="d-ic">🌱</div>
+          <h3>Environment</h3>
+          <p>Sustainability, recycling, energy, and the school grounds — keeping AGSB greener.</p>
+          <div class="d-meta"><span><b>Meets:</b> Mondays · fortnightly</span><span><b>Room:</b> <span class="pill-tbc">TBC</span></span><span><b>Chair:</b> <span class="pill-tbc">TBC</span></span></div>
+        </div>
+        <div class="dept reveal d1">
+          <div class="d-ic">🏫</div>
+          <h3>Facilities</h3>
+          <p>Buildings, classrooms, common spaces, lockers and the physical school environment.</p>
+          <div class="d-meta"><span><b>Meets:</b> Tuesdays · fortnightly</span><span><b>Room:</b> <span class="pill-tbc">TBC</span></span><span><b>Chair:</b> <span class="pill-tbc">TBC</span></span></div>
+        </div>
+        <div class="dept reveal d2">
+          <div class="d-ic">🍽️</div>
+          <h3>Catering (Sodexo)</h3>
+          <p>Food, the canteen and dining — menus, quality, pricing and the lunchtime experience.</p>
+          <div class="d-meta"><span><b>Meets:</b> Wednesdays · fortnightly</span><span><b>Room:</b> <span class="pill-tbc">TBC</span></span><span><b>Chair:</b> <span class="pill-tbc">TBC</span></span></div>
+        </div>
+        <div class="dept reveal">
+          <div class="d-ic">✨</div>
+          <h3>Student Enrichment</h3>
+          <p>Clubs, trips, events and opportunities beyond the classroom that enrich school life.</p>
+          <div class="d-meta"><span><b>Meets:</b> Thursdays · fortnightly</span><span><b>Room:</b> <span class="pill-tbc">TBC</span></span><span><b>Chair:</b> <span class="pill-tbc">TBC</span></span></div>
+        </div>
+        <div class="dept reveal d1">
+          <div class="d-ic">📚</div>
+          <h3>Academic Support</h3>
+          <p>Teaching, learning, resources and support — helping every student do their best work.</p>
+          <div class="d-meta"><span><b>Meets:</b> Fridays · fortnightly</span><span><b>Room:</b> <span class="pill-tbc">TBC</span></span><span><b>Chair:</b> <span class="pill-tbc">TBC</span></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Meetings schedule -->
+  <section class="section section--alt" id="meetings">
+    <div class="container">
+      <div class="reveal" style="max-width:640px">
+        <span class="eyebrow">Meetings</span>
+        <h2 class="section-title">When & where</h2>
+        <p class="lead">Every department runs a session once a fortnight. Any student can attend the department they care about — just turn up.</p>
+      </div>
+      <div class="mt reveal d1">
+        <table class="sched">
+          <thead>
+            <tr><th>Department</th><th>Day (fortnightly)</th><th>Room</th><th>Next meeting</th></tr>
+          </thead>
+          <tbody>
+            <tr><td data-l="Department"><b>Environment</b></td><td data-l="Day">Monday</td><td data-l="Room"><span class="pill-tbc">TBC</span></td><td data-l="Next"><span class="pill-tbc">TBC</span></td></tr>
+            <tr><td data-l="Department"><b>Facilities</b></td><td data-l="Day">Tuesday</td><td data-l="Room"><span class="pill-tbc">TBC</span></td><td data-l="Next"><span class="pill-tbc">TBC</span></td></tr>
+            <tr><td data-l="Department"><b>Catering (Sodexo)</b></td><td data-l="Day">Wednesday</td><td data-l="Room"><span class="pill-tbc">TBC</span></td><td data-l="Next"><span class="pill-tbc">TBC</span></td></tr>
+            <tr><td data-l="Department"><b>Student Enrichment</b></td><td data-l="Day">Thursday</td><td data-l="Room"><span class="pill-tbc">TBC</span></td><td data-l="Next"><span class="pill-tbc">TBC</span></td></tr>
+            <tr><td data-l="Department"><b>Academic Support</b></td><td data-l="Day">Friday</td><td data-l="Room"><span class="pill-tbc">TBC</span></td><td data-l="Next"><span class="pill-tbc">TBC</span></td></tr>
+          </tbody>
+        </table>
+        <p class="muted mt" style="font-size:.84rem">Placeholder schedule — days, rooms and dates will be set from the real Parliament timetable.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Accounts coming -->
+  <section class="section">
+    <div class="container center" style="max-width:720px">
+      <div class="reveal">
+        <span class="eyebrow">Coming soon</span>
+        <h2 class="section-title">Student accounts</h2>
+        <p class="lead" style="margin-inline:auto">To keep submissions genuine, students will soon sign in with a school account before raising something — so every suggestion is real, and nobody can post in someone else's name.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:14px"><span class="brand-text"><small>ALTRINCHAM GRAMMAR SCHOOL FOR BOYS</small><span>AGSB HOUSES</span></span></div>
+          <p class="muted">A student-led project celebrating the four houses and giving students a voice. <em>Labor Omnia Vincit.</em></p>
+        </div>
+        <div><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li><li><a href="parliament.html">Student Parliament</a></li><li><a href="stamford.html">Stamford</a></li></ul></div>
+        <div><h4>School</h4><ul><li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">agsb.co.uk</a></li><li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">House System</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> AGSB Houses · Unofficial student-led project — not an official AGSB publication.</span><span>Built by students.</span></div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

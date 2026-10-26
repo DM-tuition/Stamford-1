@@ -2,7 +2,7 @@
 var CACHE = "stamford-v7";
 var CORE = [
   "./", "index.html", "about.html", "leadership.html", "events.html",
-  "gallery.html", "get-involved.html", "404.html", "stamford.html",
+  "gallery.html", "get-involved.html", "404.html", "stamford.html", "parliament.html",
   "css/style.css", "js/main.js", "js/events.js", "js/config.js",
   "data/events.json", "assets/crest.png", "manifest.webmanifest",
   "assets/icons/icon-192.png", "assets/icons/icon-512.png"
