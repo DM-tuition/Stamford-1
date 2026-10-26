@@ -138,4 +138,15 @@ Live points + **"Road to the Cup"** tracker; **results & recaps** feed after eac
 
 ---
 
+## Events: official AGSB calendar feed (Oct 2026)
+
+- agsb.co.uk runs FullCalendar (Juniper Websites). Its public JSON feed is `https://www.agsb.co.uk/calendar/api.asp?pid=128&viewid=19&calid=2,3,4,5,6,7,8,10,14&bgedit=false&start=YYYY-MM-DD&end=YYYY-MM-DD`. Each event has `cals` (category ids): 2 Term Dates, 3 Trips, **4 House Events**, 5 Governors, 6 Events, 7 Exams, 8 Parents Evenings, 10 PFA, 14 Sport.
+- `scripts/build_calendar.py` keeps **House Events + Term Dates only** and writes `data/calendar.json` (all-day end dates are exclusive in FullCalendar, so the script subtracts a day). Run: `python3 scripts/build_calendar.py --fetch`.
+- The Pages deploy workflow re-runs it on every deploy **and daily at 05:17 UTC**, so dates stay current without commits. If the fetch fails, the committed snapshot is used.
+- The cloud sandbox can't reach agsb.co.uk directly (proxy blocks it); use Firecrawl to fetch the feed when working here.
+- Front end (`js/main.js`): `loadDates()` merges calendar.json + dated house-diary entries (events.json) + Parliament meetings with a `next` date. Widgets: `data-scroller="N"` (AGSB-style card scroller with filter + arrows), `data-season-list` (All events page, month groups, past toggle, `#ev-<id>` deep links), and the sitewide "Next up" bar (skips term dates).
+- The 2025/26 house diary (events.json, from a staff PDF) stays on the All events page in a collapsed archive. The official calendar's House Events category is thinner than that diary (mostly Value Award assemblies), so a 2026/27 diary PDF would still add a lot.
+
+---
+
 *End of project memory.*

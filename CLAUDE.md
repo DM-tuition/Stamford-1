@@ -232,6 +232,8 @@ Official house crest designs (from AGSB website):
 - Mobile-friendly
 - Confident visual hierarchy
 
+**Live dates:** House events and term dates come from the official AGSB calendar feed (category 4 = House Events, 2 = Term Dates) via `scripts/build_calendar.py`, refreshed daily by the deploy workflow. See `docs/PROJECT-MEMORY.md`.
+
 -----
 
 *CLAUDE.md — Version 1.1 — June 2026 — Update as the year progresses.*
