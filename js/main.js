@@ -147,6 +147,60 @@
     }).catch(function () {});
   })();
 
+  function esc(s) { return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+  function yearLabel(y) { if (!y) return ""; if (/^all/i.test(y)) return "All years"; return /^\d/.test(y) ? "Year " + y : y; }
+
+  /* ---- "Coming up" list: <div data-upcoming="5"> (next dated events from events.json) ---- */
+  (function upcoming() {
+    var els = document.querySelectorAll("[data-upcoming]");
+    if (!els.length) return;
+    fetch("data/events.json").then(function (r) { return r.json(); }).then(function (data) {
+      var now = new Date(new Date().toDateString());
+      var up = (data.events || []).filter(function (e) { return e.date && new Date(e.date) >= now; })
+        .sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+      els.forEach(function (el) {
+        if (!up.length) {
+          el.innerHTML = '<p class="empty-note">No upcoming events in the diary yet. New dates will appear here as soon as they\'re added.</p>';
+          return;
+        }
+        var n = parseInt(el.getAttribute("data-upcoming"), 10) || 5;
+        el.innerHTML = '<ul class="upcoming">' + up.slice(0, n).map(function (e) {
+          var d = new Date(e.date);
+          var meta = [yearLabel(e.yearGroup), e.staff].filter(Boolean).map(esc).join(" · ");
+          return '<li><div class="up-date"><b>' + d.getDate() + "</b><span>" + d.toLocaleString("en-GB", { month: "short" }) + "</span></div>" +
+            '<div><div class="up-title">' + esc(e.title) + '</div><div class="up-meta">' + meta + "</div></div>" +
+            '<span class="up-cat">' + esc(e.category) + "</span></li>";
+        }).join("") + "</ul>";
+      });
+    }).catch(function () {
+      els.forEach(function (el) { el.innerHTML = '<p class="empty-note">Couldn\'t load events.</p>'; });
+    });
+  })();
+
+  /* ---- Parliament meetings table: <div data-parliament="full|compact"> (from parliament.json) ---- */
+  (function parliament() {
+    var els = document.querySelectorAll("[data-parliament]");
+    if (!els.length) return;
+    fetch("data/parliament.json").then(function (r) { return r.json(); }).then(function (p) {
+      function v(x) { return x ? esc(x) : '<span class="pill-tbc">TBC</span>'; }
+      function next(x) { return x ? esc(new Date(x).toLocaleDateString("en-GB", { weekday: "short", day: "numeric", month: "short" })) : v(""); }
+      els.forEach(function (el) {
+        var full = el.getAttribute("data-parliament") === "full";
+        var cols = full ? ["Department", "Covers", "Day", "Time", "Room", "Chair", "Next"] : ["Department", "Day", "Time", "Room", "Next"];
+        var rows = p.departments.map(function (d) {
+          var cells = { Department: '<td class="dn">' + esc(d.name) + "</td>", Covers: '<td class="cv" data-l="Covers">' + esc(d.covers) + "</td>",
+            Day: '<td data-l="Day">' + v(d.day) + "</td>", Time: '<td data-l="Time">' + v(d.time) + "</td>", Room: '<td data-l="Room">' + v(d.room) + "</td>",
+            Chair: '<td data-l="Chair">' + v(d.chair) + "</td>", Next: '<td data-l="Next">' + next(d.next) + "</td>" };
+          return "<tr>" + cols.map(function (c) { return cells[c]; }).join("") + "</tr>";
+        }).join("");
+        el.innerHTML = '<table class="sched"><thead><tr>' + cols.map(function (c) { return "<th>" + c + "</th>"; }).join("") + "</tr></thead><tbody>" + rows + "</tbody></table>" +
+          (p.placeholder ? '<p class="muted" style="font-size:.8rem;margin-top:8px">Meets ' + esc(p.frequency).toLowerCase() + ". Days are provisional until the timetable is confirmed.</p>" : "");
+      });
+    }).catch(function () {
+      els.forEach(function (el) { el.innerHTML = '<p class="empty-note">Couldn\'t load the meeting schedule.</p>'; });
+    });
+  })();
+
   /* ---- Live house-points leaderboard (Google Sheet CSV) ---- */
   (function leaderboard() {
     var board = document.getElementById("scoreboard");

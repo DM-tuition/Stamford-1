@@ -1,10 +1,10 @@
 /* Stamford House — service worker (offline support for the installed app) */
-var CACHE = "stamford-v8";
+var CACHE = "stamford-v9";
 var CORE = [
   "./", "index.html", "about.html", "leadership.html", "events.html",
   "gallery.html", "get-involved.html", "404.html", "stamford.html", "parliament.html", "reps.html",
   "css/style.css", "js/main.js", "js/events.js", "js/config.js",
-  "data/events.json", "data/reps.json", "js/reps.js", "assets/crest.png", "manifest.webmanifest",
+  "data/events.json", "data/reps.json", "data/parliament.json", "js/reps.js", "assets/crest.png", "manifest.webmanifest",
   "assets/icons/icon-192.png", "assets/icons/icon-512.png"
 ];
 

@@ -128,4 +128,14 @@ Live points + **"Road to the Cup"** tracker; **results & recaps** feed after eac
 
 ---
 
+## Information-portal layout (Oct 2026)
+
+- Rule from the user: this is an **information portal**. Put facts first (houses, dates, meeting times, contacts) and keep history/biography short at the bottom. No marketing copy, no stats.
+- Hub: houses at the top, then "Coming up" events and Parliament meetings, then a short "About the house system".
+- Stamford home: compact header (crest, captains), then Coming up + Contacts, then About + quotes + captain bios at the bottom.
+- Shared widgets in `js/main.js`: `<div data-upcoming="N">` lists the next N dated events from `data/events.json`; `<div data-parliament="full|compact">` renders the meetings table from `data/parliament.json` (blank fields show as TBC).
+- `data/events.json` currently holds the **2025/26** calendar, so "Coming up" shows an empty-state note until 2026/27 dates are added.
+
+---
+
 *End of project memory.*

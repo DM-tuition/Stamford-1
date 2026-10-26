@@ -1,0 +1,13 @@
+{
+ "updated": "2026-10-26",
+ "frequency": "Fortnightly",
+ "placeholder": true,
+ "note": "Days are placeholders. Fill in time, room, chair and next (ISO date, e.g. 2026-11-09) as they're confirmed; blanks show as TBC.",
+ "departments": [
+  { "name": "Environment", "covers": "Sustainability, recycling and the grounds", "day": "Monday", "time": "", "room": "", "chair": "", "next": "" },
+  { "name": "Facilities", "covers": "Buildings, classrooms, lockers and common spaces", "day": "Tuesday", "time": "", "room": "", "chair": "", "next": "" },
+  { "name": "Catering (Sodexo)", "covers": "Food, the canteen, menus and prices", "day": "Wednesday", "time": "", "room": "", "chair": "", "next": "" },
+  { "name": "Student Enrichment", "covers": "Clubs, trips and events", "day": "Thursday", "time": "", "room": "", "chair": "", "next": "" },
+  { "name": "Academic Support", "covers": "Teaching, learning and resources", "day": "Friday", "time": "", "room": "", "chair": "", "next": "" }
+ ]
+}
