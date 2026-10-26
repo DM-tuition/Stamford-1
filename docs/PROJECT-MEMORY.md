@@ -149,4 +149,13 @@ Live points + **"Road to the Cup"** tracker; **results & recaps** feed after eac
 
 ---
 
+## House crests (Oct 2026)
+
+- `assets/houses/{bradbury,massey,stamford,tatton}.webp`: the four matching 3D enamel crests, transparent background, 440px tall (about 40KB each), tight-cropped so they size consistently. Bradbury, Massey and Tatton were generated in ChatGPT from the prompts in `docs/crest-prompts.md`; Stamford is `assets/crest.png` trimmed.
+- Used on the hub house cards (`.hc-shield`). `assets/crest.png` is still the Stamford site's hero/app crest and the PWA icon source.
+- Cutout method: convex hull of the bright gold rim, since a shield is convex. This is more reliable than colour-keying the background, which would eat the dark-green and black panels.
+- Not yet used on the Stamford-only pages or as favicons.
+
+---
+
 *End of project memory.*

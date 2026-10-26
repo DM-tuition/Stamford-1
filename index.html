@@ -21,7 +21,7 @@
     .house-card { border: 1px solid var(--line); border-top: 4px solid var(--hc, #888); border-radius: var(--radius); background: #fff; padding: 24px; display: flex; flex-direction: column; transition: box-shadow .2s, transform .2s, border-color .2s; }
     .house-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
     .house-card .hc-top { display: flex; align-items: center; gap: 14px; }
-    .house-card .hc-shield { width: 52px; height: 62px; flex: none; }
+    .house-card .hc-shield { height: 88px; width: auto; flex: none; filter: drop-shadow(0 3px 5px rgba(0,0,0,.22)); }
     .house-card h3 { font-size: 1.3rem; margin-bottom: 2px; }
     .house-card .hc-colour { font-size: .76rem; color: var(--muted); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; }
     .house-card .hc-meta { margin-top: 16px; font-size: .9rem; color: var(--muted); }
@@ -34,8 +34,7 @@
       #houses .grid-4 { grid-template-columns: 1fr 1fr; gap: 10px; }
       .house-card { padding: 14px; }
       .house-card .hc-top { flex-direction: column; align-items: flex-start; gap: 6px; }
-      .house-card .hc-shield { width: 34px; height: 42px; }
-      .house-card img.hc-shield { height: 42px !important; }
+      .house-card .hc-shield { height: 56px; }
       .house-card h3 { font-size: 1.05rem; }
       .house-card .hc-colour { display: none; }
       .house-card .hc-meta { font-size: .8rem; margin-top: 8px; }
@@ -82,7 +81,7 @@
       <div class="grid grid-4">
         <div class="house-card reveal" style="--hc:#d12b2b">
           <div class="hc-top">
-            <svg class="hc-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#d12b2b" stroke="#b81f1f" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Libre Franklin" font-weight="800" font-size="22">B</text></svg>
+            <img class="hc-shield" src="assets/houses/bradbury.webp" alt="Bradbury crest" width="68" height="88" loading="lazy" />
             <div><h3>Bradbury</h3><div class="hc-colour">Red &amp; White</div></div>
           </div>
           <div class="hc-meta"><b>Captain:</b> Aadith Menon<br /><b>Vice:</b> Panchu Nucherla</div>
@@ -90,7 +89,7 @@
         </div>
         <div class="house-card reveal d1" style="--hc:#1f9d4d">
           <div class="hc-top">
-            <svg class="hc-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#1f9d4d" stroke="#17813d" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#fff" font-family="Libre Franklin" font-weight="800" font-size="22">M</text></svg>
+            <img class="hc-shield" src="assets/houses/massey.webp" alt="Massey crest" width="68" height="88" loading="lazy" />
             <div><h3>Massey</h3><div class="hc-colour">Green &amp; White</div></div>
           </div>
           <div class="hc-meta"><b>Captain:</b> Soorian Jegatheeswaran<br /><b>Vice:</b> Gregory Singh</div>
@@ -98,7 +97,7 @@
         </div>
         <div class="house-card reveal d2" style="--hc:#1a4fd6">
           <div class="hc-top">
-            <img class="hc-shield" src="assets/crest.png" alt="Stamford crest" style="height:62px;width:auto" onerror="this.onerror=null;this.src='assets/crest-photo.jpeg'" />
+            <img class="hc-shield" src="assets/houses/stamford.webp" alt="Stamford crest" width="68" height="88" loading="lazy" />
             <div><h3>Stamford</h3><div class="hc-colour">Blue &amp; White</div></div>
           </div>
           <div class="hc-meta"><b>Captain:</b> Daniel Stevenson<br /><b>Vice:</b> Ayaan Siddiqui</div>
@@ -106,7 +105,7 @@
         </div>
         <div class="house-card reveal d3" style="--hc:#f5b800">
           <div class="hc-top">
-            <svg class="hc-shield" viewBox="0 0 60 70"><path d="M3 3 H57 V40 C57 57 44 65 30 69 C16 65 3 57 3 40 Z" fill="#f5b800" stroke="#c99700" stroke-width="2"/><text x="30" y="40" text-anchor="middle" fill="#1a1a1a" font-family="Libre Franklin" font-weight="800" font-size="22">T</text></svg>
+            <img class="hc-shield" src="assets/houses/tatton.webp" alt="Tatton crest" width="68" height="88" loading="lazy" />
             <div><h3>Tatton</h3><div class="hc-colour">Yellow &amp; Black</div></div>
           </div>
           <div class="hc-meta"><b>Captain:</b> Edward Aloul<br /><b>Vice:</b> Anthony Ononye</div>
