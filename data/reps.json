@@ -1,0 +1,420 @@
+{
+ "updated": "2026-10-26",
+ "source": "House Representatives spreadsheet (D. Birchall); distribution lists set up by Hamblin IT",
+ "nameFormat": "First name + surname initial (full names kept off the public site)",
+ "emailFormat": "Y{year}{House}HR@agsb.co.uk",
+ "houses": [
+  "Bradbury",
+  "Massey",
+  "Stamford",
+  "Tatton"
+ ],
+ "years": [
+  {
+   "year": 7,
+   "forms": [
+    {
+     "form": "7CR",
+     "Bradbury": "Krishna N.",
+     "Massey": "Jayan S.",
+     "Stamford": "Arjun S.",
+     "Tatton": "Kevin G."
+    },
+    {
+     "form": "7EB",
+     "Bradbury": "Dan M.",
+     "Massey": "Haiyang Z.",
+     "Stamford": "Abanish B.",
+     "Tatton": "Enoch T."
+    },
+    {
+     "form": "7EL",
+     "Bradbury": "Akif C.",
+     "Massey": "Kavinu T.",
+     "Stamford": "Dean A.",
+     "Tatton": "Ibrahim H."
+    },
+    {
+     "form": "7LD",
+     "Bradbury": "Dani S.",
+     "Massey": "Chirush P.",
+     "Stamford": "Logan L.",
+     "Tatton": "Joel S."
+    },
+    {
+     "form": "7NH",
+     "Bradbury": "Arusnan T.",
+     "Massey": "Charelie R.",
+     "Stamford": "Seth A.",
+     "Tatton": "Lucas Y."
+    },
+    {
+     "form": "7PG",
+     "Bradbury": "Kabeer J.",
+     "Massey": "Abdulmalik A.",
+     "Stamford": "Musa A.",
+     "Tatton": "Aariv A."
+    },
+    {
+     "form": "7WH",
+     "Bradbury": "Eyad E.",
+     "Massey": "Eissa M.",
+     "Stamford": "Adhyan B.",
+     "Tatton": "Abhiram K."
+    }
+   ]
+  },
+  {
+   "year": 8,
+   "forms": [
+    {
+     "form": "8BZ",
+     "Bradbury": "Bob M.",
+     "Massey": "Ronith B.",
+     "Stamford": "Moeen A.",
+     "Tatton": "Dev A."
+    },
+    {
+     "form": "8CM",
+     "Bradbury": "Pratyush G.",
+     "Massey": "Jichen Y.",
+     "Stamford": "Aidan A.",
+     "Tatton": "Kenneth S."
+    },
+    {
+     "form": "8CY",
+     "Bradbury": "Chimdiya O.",
+     "Massey": "Daniel C.",
+     "Stamford": "Srikar J.",
+     "Tatton": "Akaal B."
+    },
+    {
+     "form": "8DY",
+     "Bradbury": "Dhanvanth P.",
+     "Massey": "Malek O.",
+     "Stamford": "Agastya R.",
+     "Tatton": "Jack F."
+    },
+    {
+     "form": "8PS",
+     "Bradbury": "Johann A.",
+     "Massey": "Sanjeev S.",
+     "Stamford": "Kenenna O.",
+     "Tatton": "Haris P."
+    },
+    {
+     "form": "8WE",
+     "Bradbury": "Tharun P.",
+     "Massey": "Ash S.",
+     "Stamford": "Yazen A.",
+     "Tatton": "Jai J."
+    },
+    {
+     "form": "8WL",
+     "Bradbury": "Deeyaan B.",
+     "Massey": "Isaac G.",
+     "Stamford": "Kit H.",
+     "Tatton": "Aarav N."
+    }
+   ]
+  },
+  {
+   "year": 9,
+   "forms": [
+    {
+     "form": "9BY",
+     "Bradbury": "Samuel Y.",
+     "Massey": "Bilal R.",
+     "Stamford": "Eesa M.",
+     "Tatton": "Kartik V."
+    },
+    {
+     "form": "9CX",
+     "Bradbury": "Sivansh P.",
+     "Massey": "Mohamed O.",
+     "Stamford": "Elijah V.",
+     "Tatton": "Agastya K."
+    },
+    {
+     "form": "9DS",
+     "Bradbury": "Samuel L.",
+     "Massey": "Muntaseer H.",
+     "Stamford": "Marwan A.",
+     "Tatton": "Reyansh P."
+    },
+    {
+     "form": "9FN",
+     "Bradbury": "Zayan K.",
+     "Massey": "Abdullah K.",
+     "Stamford": "Ashrit B.",
+     "Tatton": "Joshua C."
+    },
+    {
+     "form": "9GA",
+     "Bradbury": "Sahib S.",
+     "Massey": "Isaac D.",
+     "Stamford": "Ben W.",
+     "Tatton": "Lalit D."
+    },
+    {
+     "form": "9OL",
+     "Bradbury": "Henry B.",
+     "Massey": "Laris N.",
+     "Stamford": "Alex K.",
+     "Tatton": "Alex B."
+    },
+    {
+     "form": "9PO",
+     "Bradbury": "Orlando C.",
+     "Massey": "Aarush K.",
+     "Stamford": "Navithu B.",
+     "Tatton": "Aaryan M."
+    }
+   ]
+  },
+  {
+   "year": 10,
+   "forms": [
+    {
+     "form": "10BG",
+     "Bradbury": "Sol G.",
+     "Massey": "Kingson W.",
+     "Stamford": "Aidhan M.",
+     "Tatton": "Khizer A."
+    },
+    {
+     "form": "10CC",
+     "Bradbury": "Laith N.",
+     "Massey": "Ayaan M.",
+     "Stamford": "Sam L.",
+     "Tatton": "Aran D."
+    },
+    {
+     "form": "10CE",
+     "Bradbury": "Haziq Q.",
+     "Massey": "Karan M.",
+     "Stamford": "Vismay V.",
+     "Tatton": "Andrey K."
+    },
+    {
+     "form": "10EE",
+     "Bradbury": "Arko B.",
+     "Massey": "Shaharyar H.",
+     "Stamford": "Moxit S.",
+     "Tatton": "Azlaan M."
+    },
+    {
+     "form": "10JM",
+     "Bradbury": "Aarav A.",
+     "Massey": "Anirudh N.",
+     "Stamford": "Yacob B.",
+     "Tatton": "Zachary T."
+    },
+    {
+     "form": "10MA",
+     "Bradbury": "Milan M.",
+     "Massey": "Xue H.",
+     "Stamford": "Doyle N.",
+     "Tatton": "Zhang K."
+    },
+    {
+     "form": "10MK",
+     "Bradbury": "Riyan M.",
+     "Massey": "Avyasnsh V.",
+     "Stamford": "Muhammad K.",
+     "Tatton": "Luke H."
+    }
+   ]
+  },
+  {
+   "year": 11,
+   "forms": [
+    {
+     "form": "11BM",
+     "Bradbury": "Seth H.",
+     "Massey": "Ryan B.",
+     "Stamford": "Nasser C.",
+     "Tatton": "Adam Y."
+    },
+    {
+     "form": "11CP",
+     "Bradbury": "Ayush J.",
+     "Massey": "Gabriel O.",
+     "Stamford": "Zakariah Y.",
+     "Tatton": "Alex C."
+    },
+    {
+     "form": "11CU",
+     "Bradbury": "Harris S.",
+     "Massey": "Charlie R.",
+     "Stamford": "Lewis W.",
+     "Tatton": "Yahia A."
+    },
+    {
+     "form": "11FA",
+     "Bradbury": "Yusuf A.",
+     "Massey": "Vinay S.",
+     "Stamford": "Jasor E.",
+     "Tatton": "Adam Y."
+    },
+    {
+     "form": "11LS",
+     "Bradbury": "Arnav N.",
+     "Massey": "Keaton L.",
+     "Stamford": "Harry G.",
+     "Tatton": "Oscar P."
+    },
+    {
+     "form": "11RG",
+     "Bradbury": "Nick B.",
+     "Massey": "Khalid O.",
+     "Stamford": "Hari D.",
+     "Tatton": "Aarav S."
+    },
+    {
+     "form": "11RW",
+     "Bradbury": "Divyan P.",
+     "Massey": "Ishaan K.",
+     "Stamford": "Vishakh N.",
+     "Tatton": "James Q."
+    }
+   ]
+  },
+  {
+   "year": 12,
+   "forms": [
+    {
+     "form": "12CN",
+     "Bradbury": "Ahmad H.",
+     "Massey": "Rayan S.",
+     "Stamford": "Ritvik P.",
+     "Tatton": "Ibrahim C."
+    },
+    {
+     "form": "12CT",
+     "Bradbury": "Izyan F.",
+     "Massey": "Sarim A.",
+     "Stamford": "Noah H.",
+     "Tatton": "Oliver G."
+    },
+    {
+     "form": "12MH",
+     "Bradbury": "Avel B.",
+     "Massey": "Owen P.",
+     "Stamford": "Soham B.",
+     "Tatton": "Zohaib S."
+    },
+    {
+     "form": "12NW",
+     "Bradbury": "Eddie W.",
+     "Massey": "Toby H.",
+     "Stamford": "Ben H.",
+     "Tatton": "Oscar L."
+    },
+    {
+     "form": "12PA",
+     "Bradbury": "Bilal S.",
+     "Massey": "Callum P.",
+     "Stamford": "Jason L.",
+     "Tatton": "Sam T."
+    },
+    {
+     "form": "12PT",
+     "Bradbury": "Ryan S.",
+     "Massey": "Vedaang M.",
+     "Stamford": "Thanav C.",
+     "Tatton": "Ben H."
+    },
+    {
+     "form": "12RN",
+     "Bradbury": "Natan C.",
+     "Massey": "Adeen R.",
+     "Stamford": "Nicholas V.",
+     "Tatton": "Kevin W."
+    },
+    {
+     "form": "12SM",
+     "Bradbury": "Shun H.",
+     "Massey": "Adeniyi I.",
+     "Stamford": "Arjun M.",
+     "Tatton": "Yilin L."
+    },
+    {
+     "form": "12WK",
+     "Bradbury": "Evan S.",
+     "Massey": "David C.",
+     "Stamford": "Cameron S.",
+     "Tatton": "Luke W."
+    }
+   ]
+  },
+  {
+   "year": 13,
+   "forms": [
+    {
+     "form": "13BK",
+     "Bradbury": "Eli H.",
+     "Massey": "Ayaan A.",
+     "Stamford": "Aariz K.",
+     "Tatton": "Matti P."
+    },
+    {
+     "form": "13BL",
+     "Bradbury": "Daniel T.",
+     "Massey": "Sanan K.",
+     "Stamford": "Leo C.",
+     "Tatton": "Jonnie G."
+    },
+    {
+     "form": "13BN",
+     "Bradbury": "Tom H.",
+     "Massey": "Aritra M.",
+     "Stamford": "Aimen M.",
+     "Tatton": "Ali M."
+    },
+    {
+     "form": "13DV",
+     "Bradbury": "Panchu N.",
+     "Massey": "Louis P.",
+     "Stamford": "Daniel K.",
+     "Tatton": "Hamdan H."
+    },
+    {
+     "form": "13GH",
+     "Bradbury": "Liam R.",
+     "Massey": "Biyen B.",
+     "Stamford": "Ayaan S.",
+     "Tatton": "Rohan M."
+    },
+    {
+     "form": "13MG",
+     "Bradbury": "Cobi R.",
+     "Massey": "Charlie M.",
+     "Stamford": "Ore I.",
+     "Tatton": "Rio E."
+    },
+    {
+     "form": "13RD",
+     "Bradbury": "Anish H.",
+     "Massey": "Oscar H.",
+     "Stamford": "Bilal H.",
+     "Tatton": "Madhav A."
+    },
+    {
+     "form": "13SI",
+     "Bradbury": "Jakub P.",
+     "Massey": "Varish V.",
+     "Stamford": "Aaron B.",
+     "Tatton": "Diganth R."
+    },
+    {
+     "form": "13SQ",
+     "Bradbury": "Bharath S.",
+     "Massey": "Muhammed T.",
+     "Stamford": "Hill L.",
+     "Tatton": "Ahmad A."
+    }
+   ]
+  }
+ ]
+}

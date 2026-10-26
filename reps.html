@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>House Reps — AGSB</title>
+  <meta name="description" content="Find your house rep — every form at AGSB has a rep for Bradbury, Massey, Stamford and Tatton. Search by name or form, and email each year group's reps." />
+  <link rel="icon" href="assets/crest.png" type="image/png" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <meta name="theme-color" content="#11573f" />
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="AGSB Houses" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* Reps-only extras */
+    .rep-tools { display: grid; gap: 12px; margin-bottom: 18px; }
+    .rep-year { margin-bottom: 34px; }
+    .rep-scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; }
+    .rep-table { width: 100%; min-width: 720px; border-collapse: collapse; }
+    .rep-table.one { min-width: 0; }
+    .rep-table th, .rep-table td { text-align: left; padding: 11px 14px; border-bottom: 1px solid var(--line); font-size: .92rem; }
+    .rep-table tbody tr:last-child td { border-bottom: 0; }
+    .rep-table tbody tr:hover td { background: var(--bg-alt); }
+    .rep-table th { background: var(--bg-alt); vertical-align: top; border-top: 4px solid var(--hc, var(--accent)); }
+    .rep-table th:first-child { width: 84px; }
+    .rh-name { display: block; font-family: var(--font-display); font-weight: 800; color: var(--accent-ink); font-size: .95rem; }
+    .rh-mail { display: block; font-size: .72rem; font-weight: 600; margin-top: 3px; word-break: break-all; }
+    .rep-table td.rf { font-family: var(--font-display); font-weight: 700; color: var(--accent); }
+    .rep-table td.hit { background: #fff4d1 !important; font-weight: 700; }
+    .lists-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .list-card { background: #fff; border: 1px solid var(--line); border-top: 4px solid var(--hc); border-radius: var(--radius); padding: 18px; }
+    .list-card h4 { margin-bottom: 10px; }
+    .list-card ul { list-style: none; }
+    .list-card li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0; border-bottom: 1px solid var(--line); font-size: .84rem; }
+    .list-card li:last-child { border-bottom: 0; }
+    .list-card li span { color: var(--muted); font-weight: 600; white-space: nowrap; }
+    .copy-mini { border: 0; background: none; color: var(--accent); font: inherit; font-size: .76rem; font-weight: 600; cursor: pointer; text-align: right; word-break: break-all; }
+    .copy-mini:hover { text-decoration: underline; }
+    @media (max-width: 900px) { .lists-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 560px) { .lists-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="flag-strip"><i class="b"></i><i class="m"></i><i class="s"></i><i class="t"></i></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="index.html" aria-label="AGSB Houses home">
+        <svg class="mini-shield" style="width:38px;height:44px" viewBox="0 0 60 70" aria-hidden="true">
+          <path d="M4 4 H56 V40 C56 56 44 64 30 68 C16 64 4 56 4 40 Z" fill="#fff" stroke="#11573f" stroke-width="3"/>
+          <clipPath id="bhs"><path d="M4 4 H56 V40 C56 56 44 64 30 68 C16 64 4 56 4 40 Z"/></clipPath>
+          <g clip-path="url(#bhs)"><rect x="4" y="4" width="26" height="33" fill="#d12b2b"/><rect x="30" y="4" width="26" height="33" fill="#1f9d4d"/><rect x="4" y="37" width="26" height="33" fill="#1a4fd6"/><rect x="30" y="37" width="26" height="33" fill="#f5b800"/></g>
+        </svg>
+        <span class="brand-text"><small>ALTRINCHAM GRAMMAR SCHOOL FOR BOYS</small><span>AGSB HOUSES</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="events.html">Events</a></li>
+        <li><a href="parliament.html">Parliament</a></li>
+        <li><a href="reps.html" class="active">Reps</a></li>
+        <li><a href="stamford.html">Stamford</a></li>
+      </ul>
+      <div class="nav-tools"><button class="nav-toggle" aria-label="Menu" aria-expanded="false"><span></span></button></div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb"><a href="index.html">Home</a> → House Reps</div>
+      <h1>House Reps</h1>
+      <p>Every form has a rep for each of the four houses. Find yours, or email every rep in a year group in one go.</p>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:36px">
+    <div class="container">
+      <div class="rep-tools">
+        <div class="search"><span class="si">⌕</span><input id="rep-search" type="search" placeholder="Search by name or form, e.g. 9GA or Ben" aria-label="Search reps" /></div>
+        <div class="filters"><span class="filter-label">House</span><div class="filter-group" id="rep-house"></div></div>
+        <div class="filters"><span class="filter-label">Year</span><div class="filter-group" id="rep-year"></div></div>
+      </div>
+      <p class="events-count" id="reps-count">Loading…</p>
+      <div id="reps"><p class="muted">Loading reps…</p></div>
+    </div>
+  </section>
+
+  <section class="section section--alt" id="mailing-lists">
+    <div class="container">
+      <div class="reveal" style="max-width:640px">
+        <span class="eyebrow">Mailing lists</span>
+        <h2 class="section-title">Email a year's reps</h2>
+        <p class="lead">Each house has a mailing list for its reps in every year group. Tap an address to copy it.</p>
+      </div>
+      <div class="lists-grid mt" id="reps-lists"></div>
+      <p class="muted mt" style="font-size:.84rem">Addresses follow the school format <code>Y[year][House]HR@agsb.co.uk</code>. They're school distribution lists, so send from your school email.</p>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:14px"><span class="brand-text"><small>ALTRINCHAM GRAMMAR SCHOOL FOR BOYS</small><span>AGSB HOUSES</span></span></div>
+          <p class="muted">A student-led project celebrating the four houses and giving students a voice. <em>Labor Omnia Vincit.</em></p>
+        </div>
+        <div><h4>Explore</h4><ul><li><a href="index.html">Home</a></li><li><a href="events.html">Events</a></li><li><a href="parliament.html">Student Parliament</a></li><li><a href="reps.html">House Reps</a></li><li><a href="stamford.html">Stamford</a></li></ul></div>
+        <div><h4>School</h4><ul><li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">agsb.co.uk</a></li><li><a href="https://www.agsb.co.uk" target="_blank" rel="noopener">House System</a></li></ul></div>
+      </div>
+      <div class="footer-bottom"><span>© <span data-year>2026</span> AGSB Houses · Unofficial student-led project — not an official AGSB publication.</span><span>Built by students.</span></div>
+    </div>
+  </footer>
+
+  <script src="js/config.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/reps.js"></script>
+</body>
+</html>

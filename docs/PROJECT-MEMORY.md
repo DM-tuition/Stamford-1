@@ -119,4 +119,13 @@ Live points + **"Road to the Cup"** tracker; **results & recaps** feed after eac
 
 ---
 
+## House Reps directory (added Oct 2026)
+
+- `reps.html` + `js/reps.js` render `data/reps.json`: filter by house and year, search by name or form (names shown as first name + initial for privacy), mailto link per house per year in each table header, plus a copyable mailing-list grid.
+- `reps.html?house=stamford` preselects a house. The Stamford pages link there.
+- Email format: `Y[year][House]HR@agsb.co.uk`. Generated in JS from `emailFormat` in the JSON, not stored per row.
+- Nav is now: Home / Events / Parliament / Reps / Stamford (hub), and AGSB Houses / Home / Events / Parliament / Reps / Get Involved (Stamford pages).
+
+---
+
 *End of project memory.*

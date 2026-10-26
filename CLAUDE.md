@@ -117,6 +117,15 @@ House activities & results are shared on the school’s House Twitter page, and 
 - Massey Captain: Soorian Jegatheeswaran / Vice: Gregory Singh
 - Tatton Captain: Edward Aloul / Vice: Anthony Ononye
 
+
+### House Representatives (2026/27)
+
+- Every form group has **one rep per house** (4 reps per form), so 212 reps across 53 forms. Y7–Y11 have 7 forms each; Y12 and Y13 have 9 each.
+- Source: "House Representatives" spreadsheet from Daniel Birchall (Display Version sheet). Stored in `data/reps.json` and shown on `reps.html` as **first name + surname initial** (e.g. "Ben W."). Full names are deliberately kept off the public site and repo; the spreadsheet is the full record. **Edit the JSON** to update a rep.
+- **Mailing lists** (Exchange distribution lists set up by Josh Hawksworth, Hamblin IT Systems Manager), one per house per year:
+  `Y[year][House]HR@agsb.co.uk`, e.g. `Y7StamfordHR@agsb.co.uk`, `Y13BradburyHR@agsb.co.uk` (28 lists, Y7–Y13 × 4 houses).
+- Ayaan Siddiqui (Vice Captain) is also the Stamford rep for 13GH.
+
 -----
 
 ## 6. DANIEL STEVENSON — HOUSE CAPTAIN
